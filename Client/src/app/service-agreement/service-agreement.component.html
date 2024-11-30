@@ -1,1 +1,269 @@
-<p>service-agreement works!</p>
+
+
+
+
+<!-- Modal add -->
+<!-- <div *ngIf="showMeForm ">
+    <form>
+
+        <div>
+            <h3 class="h6 mb-4 ">Basic information of Service Agreement</h3>
+        </div>
+
+
+        <label>Unit id</label>
+        <br/>
+
+        <select class="form-control " [(ngModel)]="unitid " [ngModelOptions]="{ standalone: true } " id="unitid">
+            <option>Choose an Existing UnitId</option>
+            <option *ngFor="let AgreementItem of AgreementArray ">{{ AgreementItem.unitid }}</option>      </select>
+
+        <label>Equipment</label>
+        <br/>
+        <input type="text " [(ngModel)]="equipment " [ngModelOptions]="{ standalone: true } " class="form-control " id="equipment " placeholder="Enter equipments " />
+
+        <label>Price per service</label>
+        <br/>
+        <input type="text " [(ngModel)]="price_per_service " [ngModelOptions]="{ standalone: true } " class="form-control " id="price_per_service " placeholder="Enter price per service " />
+
+        <label>Emergency service rate</label>
+        <br/>
+        <input type="text " [(ngModel)]="emergency_service_rate " [ngModelOptions]="{ standalone: true } " class="form-control " id="emergency_service_rate " placeholder="Enter emergency service rate " />
+
+        <label>Type of the service</label>
+        <br />
+        <select class="form-control " [(ngModel)]="type_of_the_service " [ngModelOptions]="{ standalone: true } " id="type_of_the_service ">
+        <option>Monthly</option>
+        <option>Quarterly</option>
+        <option>Halfyearly</option>
+        <option>Yearly</option>
+  </select>
+
+        <label>Initiated date</label>
+        <br/>
+        <input type="date" [(ngModel)]="initiated_date " [ngModelOptions]="{ standalone: true } " class="form-control " id="initiated_date " placeholder="Enter initiated date " />
+
+        <label>Expired date</label>
+        <br/>
+        <input type="date" [(ngModel)]="expired_date " [ngModelOptions]="{ standalone: true } " class="form-control " id="expired_date " placeholder="Enter expired date " />
+
+        <label>Customer_NIC</label>
+        <br/>
+        <select class="form-control " [(ngModel)]="nic " [ngModelOptions]="{ standalone: true } " id="nic">
+            <option *ngFor="let item of CustomerArray" >{{item.nic_number}}</option>
+            </select>
+
+
+
+
+        <button type="submit " class="btn btn-outline-primary " (click)="save() ">
+                                      <img src=" ../../assets/Icon/Customer/submit.png " alt="Bootstrap " width="50 " height="55 " />
+                                      </button>
+
+
+    </form>
+</div> -->
+
+
+
+
+
+
+
+
+
+<div class="row">
+  <div class="col-sm-2">
+    <app-side-nav></app-side-nav>
+  </div>
+  <div class="col-sm-10 ps-3 mt-2">
+    <div *ngIf="showMeForm" lass="alert " id="exampleModal " tabindex="-1 " aria-labelledby="exampleModalLabel " aria-hidden="false ">
+        <div class="alert ">
+            <div class="modal-content ">
+                <div class="modal-header ">
+                    <h1 class="modal-title fs-5 " id="exampleModalLabel ">Submit Form</h1>
+                    <button type="button " class="btn-close " data-bs-dismiss="modal " aria-label="Close " onClick="history.go(0) "></button>
+                </div>
+                <!-- <div class="modal-header ">
+                    <h1 class="modal-title fs-5 " id="exampleModalLabel " *ngIf="showMeTitle2">Edit Form</h1>
+                    <button type="button " class="btn-close " data-bs-dismiss="modal " aria-label="Close " onClick="history.go(0) "></button>
+                </div> -->
+                <div class="modal-body ">
+                    <form>
+    
+                        <div>
+                            <h3 class="h6 mb-4 ">Basic information of Service Agreement</h3>
+                        </div>
+    
+    
+                        <label>Unit id</label>
+                        <br />
+    
+                        <select class="form-control " [(ngModel)]="unitid " [ngModelOptions]="{ standalone: true } " id="unitid ">
+                                        <option>1</option>
+                                        <option *ngFor="let AgreementItem of AgreementArray ">{{ AgreementItem.unitid }}
+                                        </option>
+                                    </select>
+    
+                        <label>Equipment</label>
+                        <br />
+                        <input type="text " [(ngModel)]="equipment " [ngModelOptions]="{ standalone: true } " class="form-control " id="equipment " placeholder="Enter equipments " />
+    
+                        <label>Price per service</label>
+                        <br />
+                        <input type="text " [(ngModel)]="price_per_service " [ngModelOptions]="{ standalone: true } " class="form-control " id="price_per_service " placeholder="Enter price per service " />
+    
+                        <label>Emergency service rate</label>
+                        <br />
+                        <input type="text " [(ngModel)]="emergency_service_rate " [ngModelOptions]="{ standalone: true } " class="form-control " id="emergency_service_rate " placeholder="Enter emergency service rate " />
+    
+                        <label>Type of the service</label>
+                        <br />
+                        <select class="form-control " [(ngModel)]="type_of_the_service " [ngModelOptions]="{ standalone: true } " id="type_of_the_service ">
+                                        <option>Monthly</option>
+                                        <option>Quarterly</option>
+                                        <option>Halfyearly</option>
+                                        <option>Yearly</option>
+                                    </select>
+    
+                        <label>Initiated date</label>
+                        <br />
+                        <input type="date" [(ngModel)]="initiated_date " [ngModelOptions]="{ standalone: true } " class="form-control " id="date " placeholder="Enter initiated date " />
+    
+                        <label>Expired date</label>
+                        <br />
+                        <input type="date" [(ngModel)]="expired_date " [ngModelOptions]="{ standalone: true } " class="form-control " id="expired_date " placeholder="Enter expired date " />
+    
+                        <label>Customer_NIC</label>
+                        <br />
+                        <select class="form-control " [(ngModel)]="nic " [ngModelOptions]="{ standalone: true } " id="nic ">
+                                        <option *ngFor="let item of CustomerArray ">{{item.nic_number}}</option>
+                                    </select>
+    
+                        <td> <button type="submit " class="btn btn-outline-primary " (click)="save() ">
+                            <img src=" ../../assets/Icon/Customer/submit.png " alt="Bootstrap " width="50 " height="55 " />
+                            </button>
+                        </td>
+                        <td>
+                            <button type="submit " class="btn btn-outline-primary " onClick="history.go(0) ">
+                                <img src=" ../../assets/Icon/Customer/close1.gif " alt="Bootstrap " width="50 " height="55 " />
+                                </button> </td>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container mt-4 " *ngIf="DontshowMeTable ">
+        <header class="py-3 border-bottom ">
+            <div class="container d-flex flex-wrap justify-content-center ">
+                <a class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto text-dark text-decoration-none ">
+                    <span class="fs-8 ">Agreements</span>
+                    <span class="badge rounded-pill bg-info customerCount text-muted ">
+                        100
+                    </span>
+                </a>
+                <form class="col-12 col-lg-auto mb-3 mb-lg-0 ">
+                    <input type="search " name="key " class="form-control " placeholder="Search... " aria-label="Search " required />
+                </form>
+                <button type="button " id="v" class=" btn btn-outline-primary " (click)="toogleTagForm() " (click)="toogleTagTable() ">
+                    <img src=" ../../assets/Icon/Dashboard/handshake_FILL0_wght400_GRAD0_opsz48.png " alt="Bootstrap "
+                        width="20 " height="20 " />
+                    Add Agreement
+                </button>
+
+            </div>
+        </header>
+    
+        <div class="tabel-containt " id="main-container ">
+            <table class="table align-middle mb-0 bg-white ">
+                <thead class="bg-light ">
+                    <tr>
+                        <!-- <th scope="col ">AgreementID</th>
+                        <th scope="col ">UnitID</th> -->
+                        <!-- <th scope="col ">UnitName</th> -->
+                        <th scope="col ">Customer NIC</th>
+                        <th scope="col ">Equipments</th>
+                        <th scope="col ">ServicePrice</th>
+                        <th scope="col ">Emergency Price Rate</th>
+                        <th scope="col ">Service Type</th>
+                        <th scope="col ">Initiated Date</th>
+                        <th scope="col ">Expired Date</th>
+    
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let AgreementItem of AgreementArray ">
+                        <!-- <th scope="row ">{{ AgreementItem.agreementid }}</th>
+                        <td>{{ AgreementItem.unitid }}</td> -->
+                        <th scope="row ">{{ AgreementItem.nic }}</th>
+                        <td>{{ AgreementItem.equipment }}</td>
+                        <td>{{ AgreementItem.price_per_service }}</td>
+                        <td>{{ AgreementItem.emergency_service_rate }}</td>
+                        <td>{{ AgreementItem.type_of_the_service }}</td>
+                        <td>{{ AgreementItem.initiated_date }}</td>
+                        <td>{{ AgreementItem.expired_date }}</td>
+                        <!-- <td>{{ AgreementItem.nic }}</td> -->
+    
+                        <td>
+                            <button type=" button " class="btn btn-link btn-sm btn-rounded " (click)="setDelete(AgreementItem) ">
+                                <img src="../../assets/Icon/Customer/delete_FILL0_wght400_GRAD0_opsz48.png "
+                                    alt="Bootstrap " width="20 " height="20 " />
+                            </button>
+                        </td>
+                        <td>
+    
+    
+    
+                            <button type="button " class="btn btn-outline-primary " (click)="setUpdate(AgreementItem) " (click)="toogleTagForm() " (click)="toogleTagTable() ">
+                                <img src=" ../../assets/Icon/Customer/edit_FILL0_wght400_GRAD0_opsz48.png " alt="Bootstrap "
+                                    width="20 " height="20 " />
+                            </button>
+    
+    
+                        </td>
+                        <td>
+    
+                            <button type="button " class="btn btn-outline-primary " (click)="passIdForGeneratePdf(AgreementItem) " (click)="navigateToUrl( 'http://localhost:8080/pdf') ">
+                                <img src=" ../../assets/Icon/Customer/pdf2.gif " alt="Bootstrap " width="20 " height="20 " />
+                            </button>
+    
+                        </td>
+    
+    
+                        <!--
+                        <td><button *ngIf="showMe " class="btn btn-outline-primary " onClick="history.go(0); ">
+                            <img
+                              src="../../assets/Icon/Customer/saveIcon.gif "
+                              alt="Bootstrap "
+                              width="20 "
+                              height="20 "
+                            />
+                          </button>
+                        </td>
+                    -->
+    
+                    </tr>
+                </tbody>
+            </table>
+    
+    
+    
+            <div *ngIf="!isResultLoaded " class=" col-lg-12 col-md-12 col-xl-12 ">
+                <div class="alert alert-info " role="alert ">
+                    <h4 class="alert-heading ">NO Agreements!</h4>
+                    <p>No Agreements were found.</p>
+                </div>
+            </div>
+    
+        </div>
+    </div>
+  </div>
+</div> 
+
+
+
+<!-- Modal -->
+
+
+

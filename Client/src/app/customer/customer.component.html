@@ -1,575 +1,521 @@
-<header class="py-3 border-bottom">
-    <div class="container d-flex flex-wrap justify-content-center">
-      <a
-        class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto text-dark text-decoration-none"
-      >
-        <span class="fs-8">Customers</span>
-        <span class="badge rounded-pill bg-info customerCount text-muted"
-          >100</span
-        >
-      </a>
-      <form class="col-12 col-lg-auto mb-3 mb-lg-0">
-        <input
-          type="search"
-          (ngModelChange)="searchCustomer(key.value)" #key="ngModel" ngModel
-          name="key"
-          class="form-control"
-          placeholder="Search..."
-          aria-label="Search"
-          required
-        />
-      </form>
-      <button
-        type="button"
-        class="btn btn-outline-primary"
-        data-bs-toggle="modal"
-        data-bs-target="#exampleModal"
-      >
-        <img
-          src="../../assets/Icon/Customer/person_add_FILL0_wght400_GRAD0_opsz48.png"
-          alt="Bootstrap"
-          width="20"
-          height="20"
-        />
+<div class="row">
+  <div class="col-sm-2">
+    <app-side-nav></app-side-nav>
+  </div>
+  <div class="col-sm-10 ps-3 mt-2">
+    <div></div>
+
+    <div class="tabel-containt" id="main-container">
+      <!-- add button for customer -->
+      <button type="button" class="btn btn-primary p-2 m-2 justify-content-end" data-bs-toggle="modal"
+        data-bs-target="#exampleModal">
+        <img src="../../assets/Icon/Customer/person_add_FILL0_wght400_GRAD0_opsz48.png" alt="Bootstrap" width="20"
+          height="20" />
         Add Customer
       </button>
-    </div>
-  </header>
-  <div class="tabel-containt " id="main-container">
-    <table class="table align-middle mb-0 bg-white">
-      <thead class="bg-light">
-        <tr>
-          <th>Name</th>
-          <th>Address</th>
-          <th>Status</th>
-          <th>Job added</th>
-          <th>Contact person</th>
-          <th>Designation</th>
-          <th>Contact number</th>
-          <th></th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let customer of customers">
-          <td>
-            <div class="d-flex align-items-center">
-              <img
-                src="https://mdbootstrap.com/img/new/avatars/8.jpg"
-                alt=""
-                style="width: 45px; height: 45px"
-                class="rounded-circle"
-              />
-              <div class="ms-3">
-                <p class="fw-bold mb-1">{{ customer.name }}</p>
-                <p class="text-muted mb-0">{{ customer.nic_number }}</p>
-              </div>
-            </div>
-          </td>
-          <td>
-            <p class="text-muted mb-0">
-              {{ customer.address }}
-            </p>
-          </td>
-          <td>
-            <span class="badge rounded-pill bg-success jobtype">Active</span>
-          </td>
-          <td>
-            <p class="text-muted mb-0">22 Jun 2022</p>
-          </td>
-          <td>
-            <p class="fw-bold mb-1">{{ customer.contactPersonName }}</p>
-            <p class="text-muted mb-0">{{ customer.email }}</p>
-          </td>
-          <td>
-            <span class="badge rounded-pill bg-primary jobtype">{{
-              customer.designation
-            }}</span>
-          </td>
-          <td>
-            <p class="text-muted mb-0">{{ customer.contactNumber }}</p>
-          </td>
-          <td>
-            <button
-              type="button"
-              class="btn btn-link btn-sm btn-rounded"
-              (click)="onOpenModal(customer, 'delete')"
-            >
-              <img
-                src="../../assets/Icon/Customer/delete_FILL0_wght400_GRAD0_opsz48.png"
-                alt="Bootstrap"
-                width="20"
-                height="20"
-              />
-            </button>
-          </td>
-          <td>
-            <button
-              type="button"
-              class="btn btn-outline-primary"
-              (click)="onOpenModal(customer, 'edit')"
-            >
-              <img
-                src="../../assets/Icon/Customer/edit_FILL0_wght400_GRAD0_opsz48.png"
-                alt="Bootstrap"
-                width="20"
-                height="20"
-              />
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <div  *ngIf="customers?.length == 0" class="col-lg-12 col-md-12 col-xl-12">
-      <div class="alert alert-info" role="alert">
-        <h4 class="alert-heading">NO CUSTOMERS!</h4>
-        <p> No Customer were found.</p>
-  
+
+      <!-- customer data table -->
+      <div>
+        <table datatable [dtTrigger]="dtTriger" [dtOptions]="dtoptions" class="table align-middle mb-0 bg-white">
+          <!-- table header -->
+          <thead class="bg-light m-2">
+            <tr>
+              <th>Id</th>
+              <th>Name</th>
+              <th>Address</th>
+              <th>Status</th>
+              <th>Customer added</th>
+              <th>Contact person</th>
+              <th>Designation</th>
+              <th>Contact number</th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+
+          <!-- table body with a for loop for each of the customers in backends -->
+          <tbody>
+            <tr *ngFor="let customer of customers">
+              <td>
+                <div class="d-flex align-items-center">
+                  <div class="ms-3">
+                    <p class="fw-bold mb-1">{{ customer.id }}</p>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="d-flex align-items-center">
+                  <div class="ms-3">
+                    <p class="fw-bold mb-1">{{ customer.name }}</p>
+                    <p class="text-muted mb-0">{{ customer.nic_number }}</p>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <p class="text-muted mb-0">
+                  {{ customer.address }}
+                </p>
+              </td>
+              <td>
+                <span class="badge rounded-pill bg-success jobtype" *ngIf="customer.active_status == true">
+                  Active
+                </span>
+                <span class="badge rounded-pill bg-danger jobtype" *ngIf="customer.active_status == false">
+                  Inactive
+                </span>
+              </td>
+              <td>
+                <p class="text-muted mb-0">
+                  {{ customer.createdAt | date : "mediumDate" }}
+                </p>
+              </td>
+              <td>
+                <p class="fw-bold mb-1">{{ customer.contactPersonName }}</p>
+                <p class="text-muted mb-0">{{ customer.email }}</p>
+              </td>
+              <td>
+                <span class="badge rounded-pill bg-primary jobtype">{{
+                  customer.designation
+                }}</span>
+              </td>
+              <td>
+                <p class="text-muted mb-0">{{ customer.contactNumber }}</p>
+              </td>
+
+              <!-- delete customer button -->
+              <td>
+                <button type="button" class="btn btn-link btn-sm btn-rounded" (click)="onOpenModal(customer, 'delete')">
+                  <img src="../../assets/Icon/Customer/delete_FILL0_wght400_GRAD0_opsz48.png" alt="Bootstrap" width="20"
+                    height="20" />
+                </button>
+              </td>
+
+              <!-- edit customer button -->
+              <td>
+                <button type="button" class="btn btn-outline-primary" (click)="onOpenModal(customer, 'edit')">
+                  <img src="../../assets/Icon/Customer/edit_FILL0_wght400_GRAD0_opsz48.png" alt="Bootstrap" width="20"
+                    height="20" />
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-    </div>
-  </div>
-  
-  <!-- Modal add -->
-  <form #addForm="ngForm" (ngSubmit)="onAddCustomer(addForm)">
-    <div
-      class="modal fade"
-      id="exampleModal"
-      tabindex="-1"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-      data-bs-backdrop="static"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Customer Details</h5>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body">
-            <div class="card mb-4">
-              <div class="card-body">
-                <div>
-                  <h3 class="h6 mb-4">Basic information</h3>
-                </div>
-  
-                <div class="row">
-                  <div class="col-lg-6">
-                    <div class="mb-3">
-                      <label class="form-label">Customer Name :</label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="name"
-                        ngModel
-                        name="name"
-                        required
-                      />
-                    </div>
-                  </div>
-  
-                  <div class="col-lg-6">
-                    <div class="mb-3">
-                      <label class="form-label">Contact Person Name :</label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="contactPersonName"
-                        ngModel
-                        name="contactPersonName"
-                        required
-                      />
-                    </div>
-                  </div>
-  
-                  <div class="col-lg-6">
-                    <div class="mb-3">
-                      <label class="form-label">Identity Number :</label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="nic_number"
-                        ngModel
-                        name="nic_number"
-                        required
-                      />
-                    </div>
-                  </div>
-                  <div class="col-lg-6">
-                    <div class="mb-3">
-                      <label class="form-label">Mobile Number :</label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="contactNumber"
-                        ngModel
-                        name="contactNumber"
-                        required
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-lg-6">
-                    <div class="mb-3">
-                      <label class="form-label">Address :</label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="address"
-                        ngModel
-                        name="address"
-                        required
-                      />
-                    </div>
-                  </div>
-                  <div class="col-lg-6">
-                    <div class="mb-3">
-                      <label class="form-label"> E- mail :</label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="email"
-                        ngModel
-                        name="email"
-                        required
-                      />
-                    </div>
-                  </div>
-                  <div class="col-lg-6">
-                    <div class="mb-3">
-                      <label class="form-label">Designation :</label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="designation"
-                        ngModel
-                        name="designation"
-                        required
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              id="add-customer-form"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
-            >
-              Close
-            </button>
-            <button
-              [disabled]="addForm.invalid"
-              type="submit"
-              class="btn btn-primary"
-            >
-              Save changes
-            </button>
-          </div>
+
+      <!-- no customers in the tabel -->
+      <div *ngIf="customers?.length == 0" class="col-lg-12 col-md-12 col-xl-12">
+        <div class="alert alert-info" role="alert">
+          <h4 class="alert-heading">NO CUSTOMERS!</h4>
+          <p>No Customer were found.</p>
         </div>
       </div>
     </div>
-  </form>
-  
-  <form #editForm="ngForm">
-    <div
-      class="modal fade"
-      id="exampleModal2"
-      tabindex="-1"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
+
+    <!-- Modal add customer details-->
+    <form #addForm="ngForm" (ngSubmit)="onAddCustomer(addForm)">
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+        data-bs-backdrop="static">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">
+                Customer Details
+              </h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div class="card mb-4">
+                <div class="card-body">
+                  <!-- <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                <label class="form-check-label" for="flexSwitchCheckDefault">Default switch checkbox input</label>
+              </div> -->
+                  <div>
+                    <h3 class="h6 mb-4">Basic information</h3>
+                  </div>
+
+                  <!-- get customer information -->
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="mb-3">
+                        <label class="form-label">Customer Name :</label>
+                        <!-- customer_name input -->
+                        <input type="text" class="form-control" id="name" ngModel name="name" required minlength="2"
+                          maxlength="50" />
+
+                        <!-- validation errors -->
+                        <div *ngIf="
+                            addForm.controls['name'].invalid &&
+                            (addForm.controls['name'].dirty ||
+                              addForm.controls['name'].touched)
+                          ">
+                          <small class="text-danger" *ngIf="addForm.controls['name'].errors?.['required']">Customer name
+                            is required.</small>
+                          <small class="text-danger" *ngIf="addForm.controls['name'].errors?.['minlength']">Customer
+                            name must be at least 2 characters
+                            long.</small>
+                          <small class="text-danger" *ngIf="addForm.controls['name'].errors?.['maxlength']">Customer
+                            name cannot be longer than 50
+                            characters.</small>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                      <div class="mb-3">
+                        <label class="form-label">Contact Person Name :</label>
+                        <!-- contact person name input -->
+                        <input type="text" class="form-control" id="contactPersonName" ngModel name="contactPersonName"
+                          required minlength="2" maxlength="50" />
+
+                        <!-- contact person name validation -->
+                        <div *ngIf="
+                            addForm.controls['contactPersonName'].invalid &&
+                            (addForm.controls['contactPersonName'].dirty ||
+                              addForm.controls['contactPersonName'].touched)
+                          ">
+                          <small class="text-danger"
+                            *ngIf="addForm.controls['contactPersonName'].errors?.['required']">Customer Contact
+                            PersonName is required.</small>
+                          <small class="text-danger"
+                            *ngIf="addForm.controls['contactPersonName'].errors?.['minlength']">Customer Contact
+                            PersonName must be at least 2
+                            characters long.</small>
+                          <small class="text-danger"
+                            *ngIf="addForm.controls['contactPersonName'].errors?.['maxlength']">Customer Contact
+                            PersonName cannot be longer than
+                            50 characters.</small>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                      <div class="mb-3">
+                        <!-- id number input -->
+                        <label class="form-label">Identity Number :</label>
+                        <input type="text" class="form-control" id="nic_number" ngModel name="nic_number" required
+                          minlength="10" maxlength="12" pattern="[0-9]*" />
+
+                        <!-- id number validation -->
+                        <div *ngIf="
+                            addForm.controls['nic_number'].invalid &&
+                            (addForm.controls['nic_number'].dirty ||
+                              addForm.controls['nic_number'].touched)
+                          " class="text-danger">
+                          <small *ngIf="addForm.controls['nic_number'].errors?.['pattern']">Identity Number must be a
+                            number.</small>
+                          <small *ngIf="addForm.controls['nic_number'].errors?.['required']">Identity Number is
+                            required.</small>
+                          <small *ngIf="addForm.controls['nic_number'].errors?.['minlength']">Identity Number must be at
+                            least 10 digits
+                            long.</small>
+                          <small *ngIf="addForm.controls['nic_number'].errors?.['maxlength']">Identity Number cannot be
+                            longer than 12
+                            digits.</small>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="mb-3">
+                        <label class="form-label">Mobile Number:</label>
+                        <input type="text" class="form-control" id="contactNumber" name="contactNumber" ngModel required
+                          pattern="^[0-9]{10}$" />
+                        <div *ngIf="
+                            addForm.controls['contactNumber'].invalid &&
+                            (addForm.controls['contactNumber'].dirty ||
+                              addForm.controls['contactNumber'].touched)
+                          ">
+                          <small class="text-danger" *ngIf="addForm.controls['contactNumber'].errors?.['required']">
+                            Mobile number is required.
+                          </small>
+                          <small class="text-danger" *ngIf="addForm.controls['contactNumber'].errors?.['pattern']">
+                            Mobile number must be a 10-digit number.
+                          </small>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="mb-3">
+                        <label class="form-label">Address :</label>
+                        <input type="text" class="form-control" id="address" ngModel name="address" required
+                          minlength="10" maxlength="50" />
+                        <div *ngIf="
+                            addForm.controls['address'].invalid &&
+                            (addForm.controls['address'].dirty ||
+                              addForm.controls['address'].touched)
+                          ">
+                          <small class="text-danger" *ngIf="addForm.controls['address'].errors?.['required']">Customer
+                            Address is required.</small>
+                          <small class="text-danger" *ngIf="addForm.controls['address'].errors?.['minlength']">Customer
+                            Address must be at least 10 characters
+                            long.</small>
+                          <small class="text-danger" *ngIf="addForm.controls['address'].errors?.['maxlength']">Customer
+                            Address cannot be longer than 50
+                            characters.</small>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="mb-3">
+                        <label class="form-label"> E- mail :</label>
+                        <input type="text" class="form-control" id="email" ngModel name="email" required email />
+                        <div *ngIf="
+                            addForm.controls['email'].invalid &&
+                            (addForm.controls['email'].dirty ||
+                              addForm.controls['email'].touched)
+                          ">
+                          <small class="text-danger" *ngIf="addForm.controls['email'].errors?.['required']">
+                            E-mail is required.
+                          </small>
+                          <small class="text-danger" *ngIf="addForm.controls['email'].errors?.['email']">
+                            Invalid e-mail format.
+                          </small>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="mb-3">
+                        <label class="form-label">Designation :</label>
+                        <input type="text" class="form-control" id="designation" ngModel name="designation" required />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- close button -->
+            <div class="modal-footer">
+              <button type="button" id="add-customer-form" class="btn btn-secondary" data-bs-dismiss="modal">
+                Close
+              </button>
+
+              <!-- submit button -->
+              <button [disabled]="addForm.invalid" type="submit" class="btn btn-primary">
+                Save changes
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <!-- edit customer details modal -->
+    <form #editForm="ngForm">
+      <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">
+                Edit Customer {{ editCustomer?.name }}
+              </h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div class="card mb-4">
+                <div class="card-body">
+                  <div>
+                    <h3 class="h6 mb-4">Basic information</h3>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="mb-3">
+                        <label class="form-label">Customer Name :</label>
+                        <input type="text" class="form-control" id="name" ngModel="{{ editCustomer?.name }}" name="name"
+                          required minlength="2" maxlength="50" />
+                        <div *ngIf="
+                            editForm.controls['name'].invalid &&
+                            (editForm.controls['name'].dirty ||
+                              editForm.controls['name'].touched)
+                          ">
+                          <small class="text-danger" *ngIf="editForm.controls['name'].errors?.['required']">Customer
+                            name is required.</small>
+                          <small class="text-danger" *ngIf="editForm.controls['name'].errors?.['minlength']">Customer
+                            name must be at least 2 characters
+                            long.</small>
+                          <small class="text-danger" *ngIf="editForm.controls['name'].errors?.['maxlength']">Customer
+                            name cannot be longer than 50
+                            characters.</small>
+                        </div>
+                      </div>
+                    </div>
+                    <input type="hidden" class="form-control" id="id" ngModel="{{ editCustomer?.id }}" name="id" />
+                    <input type="hidden" class="form-control" id="customercode"
+                      ngModel="{{ editCustomer?.customercode }}" name="customercode" />
+                    <input type="hidden" class="form-control" id="createdAt" ngModel="{{ editCustomer?.createdAt }}"
+                      name="createdAt" />
+
+                    <div class="col-lg-6">
+                      <div class="mb-3">
+                        <label class="form-label">Contact Person Name :</label>
+                        <input type="text" class="form-control" id="contactPersonName"
+                          ngModel="{{ editCustomer?.contactPersonName }}" name="contactPersonName" required
+                          minlength="2" maxlength="50" />
+                        <div *ngIf="
+                            editForm.controls['contactPersonName'].invalid &&
+                            (editForm.controls['contactPersonName'].dirty ||
+                              editForm.controls['contactPersonName'].touched)
+                          ">
+                          <small class="text-danger"
+                            *ngIf="editForm.controls['contactPersonName'].errors?.['required']">Customer Contact
+                            PersonName is required.</small>
+                          <small class="text-danger"
+                            *ngIf="editForm.controls['contactPersonName'].errors?.['minlength']">Customer Contact
+                            PersonName must be at least 2
+                            characters long.</small>
+                          <small class="text-danger"
+                            *ngIf="editForm.controls['contactPersonName'].errors?.['maxlength']">Customer Contact
+                            PersonName cannot be longer than
+                            50 characters.</small>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                      <div class="mb-3">
+                        <label class="form-label">Identity Number :</label>
+                        <input type="text" class="form-control" id="nic_number" ngModel="{{ editCustomer?.nic_number }}"
+                          name="nic_number" required minlength="10" maxlength="12" pattern="[0-9]*" />
+                        <div *ngIf="
+                            editForm.controls['nic_number'].invalid &&
+                            (editForm.controls['nic_number'].dirty ||
+                              editForm.controls['nic_number'].touched)
+                          " class="text-danger">
+                          <small *ngIf="editForm.controls['nic_number'].errors?.['pattern']">Identity Number must be a
+                            number.</small>
+                          <small *ngIf="editForm.controls['nic_number'].errors?.['required']">Identity Number is
+                            required.</small>
+                          <small *ngIf="editForm.controls['nic_number'].errors?.['minlength']">Identity Number must be
+                            at least 10 digits
+                            long.</small>
+                          <small *ngIf="editForm.controls['nic_number'].errors?.['maxlength']">Identity Number cannot be
+                            longer than 12
+                            digits.</small>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="mb-3">
+                        <label class="form-label">Mobile Number :</label>
+                        <input type="text" class="form-control" id="contactNumber"
+                          ngModel="{{ editCustomer?.contactNumber }}" name="contactNumber" required
+                          pattern="^[0-9]{10}$" />
+                        <div *ngIf="
+                            editForm.controls['contactNumber'].invalid &&
+                            (editForm.controls['contactNumber'].dirty ||
+                              editForm.controls['contactNumber'].touched)
+                          ">
+                          <small class="text-danger" *ngIf="editForm.controls['contactNumber'].errors?.['required']">
+                            Mobile number is required.
+                          </small>
+                          <small class="text-danger" *ngIf="editForm.controls['contactNumber'].errors?.['pattern']">
+                            Mobile number must be a 10-digit number.
+                          </small>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="mb-3">
+                        <label class="form-label">Address :</label>
+                        <input type="text" class="form-control" id="address" ngModel="{{ editCustomer?.address }}"
+                          name="address" required minlength="10" maxlength="50" />
+                        <div *ngIf="
+                            editForm.controls['address'].invalid &&
+                            (editForm.controls['address'].dirty ||
+                              editForm.controls['address'].touched)
+                          ">
+                          <small class="text-danger" *ngIf="editForm.controls['address'].errors?.['required']">Customer
+                            Address is required.</small>
+                          <small class="text-danger" *ngIf="editForm.controls['address'].errors?.['minlength']">Customer
+                            Address must be at least 10 characters
+                            long.</small>
+                          <small class="text-danger" *ngIf="editForm.controls['address'].errors?.['maxlength']">Customer
+                            Address cannot be longer than 50
+                            characters.</small>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="mb-3">
+                        <label class="form-label"> E- mail :</label>
+                        <input type="text" class="form-control" id="email" ngModel="{{ editCustomer?.email }}"
+                          name="email" required email />
+                        <div *ngIf="
+                            editForm.controls['email'].invalid &&
+                            (editForm.controls['email'].dirty ||
+                              editForm.controls['email'].touched)
+                          ">
+                          <small class="text-danger" *ngIf="editForm.controls['email'].errors?.['required']">
+                            E-mail is required.
+                          </small>
+                          <small class="text-danger" *ngIf="editForm.controls['email'].errors?.['email']">
+                            Invalid e-mail format.
+                          </small>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="mb-3">
+                        <label class="form-label">Designation :</label>
+                        <input type="text" class="form-control" id="designation"
+                          ngModel="{{ editCustomer?.designation }}" name="designation" required />
+                      </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                      <div class="mb-3">
+                        <label class="form-label">Active status :</label>
+                        <button type="button" class="btn btn-primary" (click)="activeStatus = !activeStatus"
+                          ngModel="{{ editCustomer?.active_status }}">
+                          {{ activeStatus ? "Active" : "Inactive" }}
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" id="add-customer-form" class="btn btn-secondary" data-bs-dismiss="modal">
+                Close
+              </button>
+              <button (click)="onUpdateCustomer(editForm.value)" class="btn btn-primary" data-bs-dismiss="modal">
+                Save changes
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <!-- delete customer modal -->
+    <div class="modal delete" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModal3" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">
-              Edit Customer {{ editCustomer?.name }}
+            <h5 class="modal-title" id="exampleModalLabedelete">
+              Detele Customer
             </h5>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <div class="card mb-4">
-              <div class="card-body">
-                <div>
-                  <h3 class="h6 mb-4">Basic information</h3>
-                </div>
-  
-                <div class="row">
-                  <div class="col-lg-6">
-                    <div class="mb-3">
-                      <label class="form-label">Customer Name :</label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="name"
-                        ngModel="{{ editCustomer?.name }}"
-                        name="name"
-                        required
-                      />
-                    </div>
-                  </div>
-                  <input
-                    type="hidden"
-                    class="form-control"
-                    id="id"
-                    ngModel="{{ editCustomer?.id }}"
-                    name="id"
-                  />
-                  <input
-                    type="hidden"
-                    class="form-control"
-                    id="customercode"
-                    ngModel="{{ editCustomer?.customercode }}"
-                    name="customercode"
-                  />
-  
-                  <div class="col-lg-6">
-                    <div class="mb-3">
-                      <label class="form-label">Contact Person Name :</label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="contactPersonName"
-                        ngModel="{{ editCustomer?.contactPersonName }}"
-                        name="contactPersonName"
-                        required
-                      />
-                    </div>
-                  </div>
-  
-                  <div class="col-lg-6">
-                    <div class="mb-3">
-                      <label class="form-label">Identity Number :</label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="nic_number"
-                        ngModel="{{ editCustomer?.nic_number }}"
-                        name="nic_number"
-                        required
-                      />
-                    </div>
-                  </div>
-                  <div class="col-lg-6">
-                    <div class="mb-3">
-                      <label class="form-label">Mobile Number :</label>
-                      <input
-                        type="email"
-                        class="form-control"
-                        id="contactNumber"
-                        ngModel="{{ editCustomer?.contactNumber }}"
-                        name="contactNumber"
-                        required
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-lg-6">
-                    <div class="mb-3">
-                      <label class="form-label">Address :</label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="address"
-                        ngModel="{{ editCustomer?.address }}"
-                        name="address"
-                        required
-                      />
-                    </div>
-                  </div>
-                  <div class="col-lg-6">
-                    <div class="mb-3">
-                      <label class="form-label"> E- mail :</label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="email"
-                        ngModel="{{ editCustomer?.email }}"
-                        name="email"
-                        required
-                      />
-                    </div>
-                  </div>
-                  <div class="col-lg-6">
-                    <div class="mb-3">
-                      <label class="form-label">Designation :</label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="designation"
-                        ngModel="{{ editCustomer?.designation }}"
-                        name="designation"
-                        required
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            Are you want to delete customer {{ deleteCustomer?.name }}?
           </div>
           <div class="modal-footer">
-            <button
-              type="button"
-              id="add-customer-form"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
-            >
-              Close
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+              No
             </button>
-            <button
-              (click)="onUpdateCustomer(editForm.value)"
-              class="btn btn-primary"
-              data-bs-dismiss="modal"
-            >
-              Save changes
+            <button (click)="onDeleteCustomer(deleteCustomer.id)" class="btn btn-danger" data-bs-dismiss="modal">
+              Yes
             </button>
           </div>
         </div>
       </div>
     </div>
-  </form>
-  
-  <!-- Button trigger modal -->
-  <!-- <button
-    type="button"
-    class="btn btn-primary"
-    data-bs-toggle="modal"
-    data-bs-target="#exampleModal3"
-  >
-    Launch demo modal
-  </button> -->
-  
-  <!-- Modal delete-->
-  <div
-    class="modal delete"
-    id="exampleModal3"
-    tabindex="-1"
-    aria-labelledby="exampleModal3"
-    aria-hidden="true"
-  >
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabedelete">Detele Customer</h5>
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-          ></button>
-        </div>
-        <div class="modal-body">
-          Are you want to delete customer {{ deleteCustomer?.name }}?
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-            No
-          </button>
-          <button
-            (click)="onDeleteCustomer(deleteCustomer.id)"
-            class="btn btn-danger"
-          >
-            Yes
-          </button>
-        </div>
-      </div>
-    </div>
   </div>
-  <!-- <span class="badge rounded-pill bg-secondary jobtype">Secondary</span>
-  
-  <span class="badge rounded-pill bg-danger jobtype">Danger</span>
-  <span class="badge rounded-pill bg-warning text-dark jobtype">Warning</span>
-  
-  <span class="badge rounded-pill bg-light text-dark jobtype">Light</span>
-  <span class="badge rounded-pill bg-dark jobtype">Dark</span> -->
-  <!-- <button
-    type="button"
-    class="btn btn-primary"
-    data-bs-toggle="modal"
-    data-bs-target="#exampleModal"
-  >
-    Launch demo modal
-  </button>
-  <div
-    class="modal fade"
-    data-bs-backdrop="static"
-    data-bs-keyboard="false"
-    id="exampleModal"
-    tabindex="-1"
-    aria-labelledby="exampleModalLabel"
-    aria-hidden="true"
-  >
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title first</h5>
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-          ></button>
-        </div>
-        <div class="modal-body">...</div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-            Close
-          </button>
-          <button
-            type="button"
-            class="btn btn-primary"
-            data-bs-toggle="modal"
-            data-bs-dismiss="modal"
-            data-bs-target="#exampleModal2"
-          >
-            Save changes
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div
-    class="modal fade"
-    id="exampleModal2"
-    tabindex="-1"
-    aria-labelledby="exampleModalLabel"
-    aria-hidden="true"
-  >
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title second</h5>
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-          ></button>
-        </div>
-        <div class="modal-body">...</div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-            Close
-          </button>
-          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
-            Save changes
-          </button>
-        </div>
-      </div>
-    </div>
-  </div> -->
-  
+</div>

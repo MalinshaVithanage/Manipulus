@@ -1,0 +1,15 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Arctic Ltd</a>
+    <div>
+      <div class="float-right">
+        <button type="button" class="btn btn-success me-1" *ngIf="!isAuthenticated" routerLink="/user-login">
+          Login
+        </button>
+        <button type="button" class="btn btn-success me-1" *ngIf="isAuthenticated" (click)="logout()">
+          Logout
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>

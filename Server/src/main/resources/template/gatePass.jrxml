@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.5.final using JasperReports Library version 6.20.5-3efcf2e67f959db3888d79f73dde2dbd7acb4f8e  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="GatePass" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="50" uuid="72b252bd-dc5e-41dd-8706-54d2e8be62a0">
+    <property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+    <parameter name="sitVisitId" class="java.lang.Long"/>
+    <parameter name="assignedJob" class="java.lang.Long"/>
+    <parameter name="assignedVehicle" class="java.lang.String"/>
+    <parameter name="jobId" class="java.lang.Long"/>
+    <parameter name="memberOne" class="java.lang.String"/>
+    <parameter name="memberIdOne" class="java.lang.Integer"/>
+    <parameter name="memberTwo" class="java.lang.String"/>
+    <parameter name="memberThree" class="java.lang.String"/>
+    <parameter name="memberFour" class="java.lang.String"/>
+    <parameter name="memberFive" class="java.lang.String"/>
+    <parameter name="memberIdTwo" class="java.lang.Integer"/>
+    <parameter name="memberIdThree" class="java.lang.Integer"/>
+    <parameter name="memberIdFour" class="java.lang.Integer"/>
+    <parameter name="memberIdFive" class="java.lang.Integer"/>
+    <parameter name="scheduledDate" class="java.util.Date" isForPrompting="false"/>
+    <parameter name="endDate" class="java.util.Date" isForPrompting="false"/>
+
+    <queryString>
+        <![CDATA[]]>
+    </queryString>
+    <background>
+        <band splitType="Stretch"/>
+    </background>
+    <title>
+        <band height="91" splitType="Stretch">
+            <property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
+            <image>
+                <reportElement x="250" y="0" width="70" height="80" uuid="97f98364-0b92-4e78-a042-bf10ba1eca56"/>
+                <imageExpression><![CDATA["C:/Users/HP/Pictures/303292717_570886498156142_5541375326204770233_n.jpg"]]></imageExpression>
+            </image>
+        </band>
+    </title>
+    <pageHeader>
+        <band height="50" splitType="Stretch">
+            <staticText>
+                <reportElement x="105" y="0" width="360" height="50" forecolor="#060608" uuid="5d80d245-9502-4ab1-99e7-fa210c636fc1"/>
+                <textElement textAlignment="Center">
+                    <font size="29" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Gate Pass - Arctic(Pvt)Ltd]]></text>
+            </staticText>
+        </band>
+    </pageHeader>
+    <columnHeader>
+        <band height="50" splitType="Stretch">
+            <staticText>
+                <reportElement x="20" y="10" width="530" height="24" uuid="497dddd5-bd18-4cc3-89e8-7b7d11a05c8c"/>
+                <box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+                    <pen lineWidth="1.0" lineColor="#000000"/>
+                    <topPen lineWidth="0.25"/>
+                    <leftPen lineWidth="0.25"/>
+                    <bottomPen lineWidth="0.25"/>
+                    <rightPen lineWidth="0.25"/>
+                </box>
+                <textElement textAlignment="Left" verticalAlignment="Middle">
+                    <font size="12"/>
+                </textElement>
+                <text><![CDATA[Gate Pass Generated On:]]></text>
+            </staticText>
+            <textField pattern="MMMMM dd, yyyy">
+                <reportElement x="170" y="10" width="100" height="24" uuid="5d8145d3-d38f-442d-b32c-07307663b7e6"/>
+                <box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+                    <pen lineColor="#000000"/>
+                    <topPen lineWidth="0.0"/>
+                    <leftPen lineWidth="0.0"/>
+                    <bottomPen lineWidth="0.0"/>
+                    <rightPen lineWidth="0.0"/>
+                </box>
+                <textElement verticalAlignment="Middle">
+                    <font size="12"/>
+                </textElement>
+                <textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement x="390" y="10" width="160" height="24" uuid="234ba6c0-c603-4ffa-a926-21775cf1f001"/>
+                <box>
+                    <pen lineWidth="0.0" lineStyle="Solid"/>
+                </box>
+                <textElement verticalAlignment="Middle">
+                    <font size="12"/>
+                </textElement>
+                <text><![CDATA[Page No : ]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="410" y="10" width="100" height="24" uuid="f82c0b7a-dc45-435f-ba03-450a8187187d"/>
+                <textElement textAlignment="Right" verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA["Page " + $V{PAGE_NUMBER}]]></textFieldExpression>
+            </textField>
+            <textField evaluationTime="Report">
+                <reportElement x="581" y="10" width="100" height="30" uuid="112da3db-fbfc-40e0-ab38-c9bb36f51d44"/>
+                <textElement textAlignment="Left"/>
+                <textFieldExpression><![CDATA[" of " + $V{PAGE_NUMBER}]]></textFieldExpression>
+            </textField>
+        </band>
+    </columnHeader>
+    <detail>
+        <band height="250" splitType="Stretch">
+            <textField>
+                <reportElement x="20" y="7" width="360" height="30" uuid="bcb9992a-8eb3-4dfd-bdb6-90c66a9ade26"/>
+                <textElement textAlignment="Justified"/>
+                <textFieldExpression><![CDATA["Site Visit ID    :    "+$P{sitVisitId}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="20" y="47" width="360" height="30" uuid="670543f7-18e5-408c-a8f7-00bcb4f9eeca"/>
+                <textElement textAlignment="Justified"/>
+                <textFieldExpression><![CDATA["Job ID : "+$P{assignedJob}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="20" y="87" width="360" height="30" uuid="b5aa3eb1-bb71-46f4-83c2-178f0a17d802"/>
+                <textElement textAlignment="Justified"/>
+                <textFieldExpression><![CDATA["Scheduled Date    :    "+$P{scheduledDate}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="20" y="127" width="360" height="30" uuid="8ef53d13-10a2-4c2c-9034-6a45e3f2cbc6"/>
+                <textElement textAlignment="Justified"/>
+                <textFieldExpression><![CDATA["End Date   :     "+$P{endDate}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="20" y="169" width="359" height="30" uuid="bc7c7abc-e860-4e3c-96ba-40abd2450c2f"/>
+                <textFieldExpression><![CDATA["Assigned Vehicle : "+$P{assignedVehicle}]]></textFieldExpression>
+            </textField>
+        </band>
+        <band height="400" splitType="Stretch">
+            <staticText>
+                <reportElement x="20" y="100" width="260" height="30" uuid="87d9a9da-ae7b-4402-a5f7-d49dabb3ca33"/>
+                <textElement>
+                    <font size="12" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Assigned Team ]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="21" y="150" width="179" height="30" uuid="152ae6c0-8ce9-4a81-9c0a-1834755607fc"/>
+                <textFieldExpression><![CDATA["Member One Name :"+$P{memberOne}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="280" y="150" width="179" height="30" uuid="92337d4c-fc2a-4ad7-8169-c7a197710205"/>
+                <textFieldExpression><![CDATA["Member One ID : "+$P{memberIdOne}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="21" y="200" width="179" height="30" uuid="18d448d5-fd82-4b73-8789-0715a4995c05"/>
+                <textFieldExpression><![CDATA["Member two Name : "+$P{memberTwo}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="280" y="200" width="179" height="30" uuid="6a2ed12c-b159-4367-a66a-03118a938319"/>
+                <textFieldExpression><![CDATA["Member two ID : "+$P{memberIdTwo}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="21" y="250" width="179" height="30" uuid="0c6387d6-c733-4e38-8b3e-9942321e8f0f"/>
+                <textFieldExpression><![CDATA["Member three Name : "+$P{memberThree}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="280" y="250" width="179" height="30" uuid="ad0cc7ff-8aa8-476f-9471-30223d48b8b6"/>
+                <textFieldExpression><![CDATA["Member three ID : "+$P{memberIdThree}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="21" y="300" width="179" height="30" uuid="b7d12d07-cfa6-4db2-9f74-248fcff01e5c"/>
+                <textFieldExpression><![CDATA["Member four Name :  "+$P{memberFour}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="280" y="300" width="179" height="30" uuid="07da2d65-a4e9-4c7b-9d91-f8853ee76170"/>
+                <textFieldExpression><![CDATA["Member four ID : "+$P{memberIdFour}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="20" y="350" width="179" height="30" uuid="a93efe33-b257-42c9-960a-d91c87debf58"/>
+                <textFieldExpression><![CDATA["Member five Name : "+$P{memberFive}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="279" y="350" width="179" height="30" uuid="74cb225a-858f-4c52-a939-9b78b29ecb7d"/>
+                <textFieldExpression><![CDATA["Member five ID : "+$P{memberIdFive}]]></textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+    <columnFooter>
+        <band height="45" splitType="Stretch"/>
+    </columnFooter>
+    <pageFooter>
+        <band height="54" splitType="Stretch"/>
+    </pageFooter>
+    <summary>
+        <band height="42" splitType="Stretch"/>
+    </summary>
+</jasperReport>

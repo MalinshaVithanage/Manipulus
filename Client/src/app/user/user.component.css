@@ -1,0 +1,22 @@
+.profile-form {
+  width: 400px;
+  margin: auto;
+}
+
+.form-field {
+  margin-bottom: 15px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-actions {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+.update-button {
+  margin-left: auto;
+}

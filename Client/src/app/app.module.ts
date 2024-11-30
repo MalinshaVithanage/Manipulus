@@ -22,10 +22,19 @@ import { GatePassComponent } from './gate-pass/gate-pass.component';
 import { JobCardComponent } from './job-card/job-card.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { FormsModule } from '@angular/forms';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule} from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
+import { ForgetPasswordComponent } from './user-login/forget-password/forget-password.component';
+import { HomeComponent } from './home/home.component';
+import { AdminComponent } from './admin/admin.component';
+import { HeaderComponent } from './header/header.component';
+import { ForbiddenComponent } from './forbidden/forbidden.component';
+import { RouterModule } from '@angular/router';
+import { AuthInterceptorService } from './services/auth.interceptor.service';
+import { DataTablesModule } from "angular-datatables";
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,7 +56,13 @@ import { HttpClientModule} from '@angular/common/http';
     GatePassComponent,
     JobCardComponent,
     PageNotFoundComponent,
-    DashboardComponent
+    DashboardComponent,
+    ForgetPasswordComponent,
+    HomeComponent,
+    AdminComponent,
+    HeaderComponent,
+    ForbiddenComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -57,9 +72,18 @@ import { HttpClientModule} from '@angular/common/http';
     FormsModule,
     FormsModule,
     HttpClientModule,
-    
+    RouterModule,
+    ReactiveFormsModule,
+    DataTablesModule,
   ],
-  providers: [],
+  providers: [
+    ReactiveFormsModule,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi:true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

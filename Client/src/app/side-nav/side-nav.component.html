@@ -1,137 +1,151 @@
-<div class="sidebar">
-  <a class="companyName">
-    <img
-      src="../../assets/Icon/303292717_570886498156142_5541375326204770233_n.jpg"
-      alt="Bootstrap"
-      width="20"
-      height="20"
-    />
-    Arctic(Pvt)Ltd</a
-  >
+<div *ngIf="isAuthenticated">
+  <div class="sidebar">
+    <a class="companyName">
+      <img
+        src="../../assets/Icon/303292717_570886498156142_5541375326204770233_n.jpg"
+        alt="Bootstrap"
+        width="20"
+        height="20"
+      />
+      Arctic(Pvt)Ltd</a
+    >
+    <div class="navBarItem">
+      <a class="sidebar-container" (click)="navigation('dashboard')">
+        <img
+          src="../../assets/Icon/Dashboard//dashboard_FILL0_wght400_GRAD0_opsz48.png"
+          alt="Bootstrap"
+          width="20"
+          height="20"
+        />
+        Dashboard</a
+      >
+      <a class="sidebar-container" (click)="navigation('customer')"
+        ><img
+          src="../../assets/Icon/Dashboard/person_FILL0_wght400_GRAD0_opsz48.png"
+          alt="Bootstrap"
+          width="20"
+          height="20"
+        />
+        Customer
+      </a>
+      <a class="sidebar-container" (click)="navigation('item')">
+        <img
+          src="../../assets/Icon/Dashboard/memory_FILL0_wght400_GRAD0_opsz48.png"
+          alt="Bootstrap"
+          width="20"
+          height="20"
+        />
+        Item</a
+      >
+      <a class="sidebar-container" (click)="navigation('unit')">
+        <img
+          src="../../assets/Icon/Dashboard/ac_unit_FILL0_wght400_GRAD0_opsz48.png"
+          alt="Bootstrap"
+          width="20"
+          height="20"
+        />
+        Unit</a
+      >
+      <a class="sidebar-container" (click)="navigation('vehicle')">
+        <img
+          src="../../assets/Icon/Dashboard/local_shipping_FILL0_wght400_GRAD0_opsz48.png"
+          alt="Bootstrap"
+          width="20"
+          height="20"
+        />
+        Vehicle</a
+      >
+      <a class="sidebar-container" (click)="navigation('service-agreement')">
+        <img
+          src="../../assets/Icon/Dashboard/handshake_FILL0_wght400_GRAD0_opsz48.png"
+          alt="Bootstrap"
+          width="20"
+          height="20"
+        />
+        Service-agreement</a
+      >
+      <a class="sidebar-container" (click)="navigation('job')">
+        <img
+          src="../../assets/Icon/Dashboard/work_FILL0_wght400_GRAD0_opsz48.png"
+          alt="Bootstrap"
+          width="20"
+          height="20"
+        />
+        Job</a
+      >
+      <a class="sidebar-container" (click)="navigation('calendar')">
+        <img
+          src="../../assets/Icon/Dashboard/calendar_month_FILL0_wght400_GRAD0_opsz48.png"
+          alt="Bootstrap"
+          width="20"
+          height="20"
+        />
+        Calendar</a
+      >
 
-  <div class="navBarItem">
-    <a class="sidebar-container" [routerLink]="'dashboard'">
-      <img
-        src="../../assets/Icon/Dashboard//dashboard_FILL0_wght400_GRAD0_opsz48.png"
-        alt="Bootstrap"
-        width="20"
-        height="20"
-      />
-      Dashboard</a
-    >
-    <a class="sidebar-container" [routerLink]="'customer'"
-      ><img
-        src="../../assets/Icon/Dashboard/person_FILL0_wght400_GRAD0_opsz48.png"
-        alt="Bootstrap"
-        width="20"
-        height="20"
-      />
-      Customer
-    </a>
-    <a class="sidebar-container" [routerLink]="'item'">
-      <img
-        src="../../assets/Icon/Dashboard/memory_FILL0_wght400_GRAD0_opsz48.png"
-        alt="Bootstrap"
-        width="20"
-        height="20"
-      />
-      Item</a
-    >
-    <a class="sidebar-container" [routerLink]="'unit'">
-      <img
-        src="../../assets/Icon/Dashboard/ac_unit_FILL0_wght400_GRAD0_opsz48.png"
-        alt="Bootstrap"
-        width="20"
-        height="20"
-      />
-      Unit</a
-    >
-    <a class="sidebar-container" [routerLink]="'vehicle'">
-      <img
-        src="../../assets/Icon/Dashboard/local_shipping_FILL0_wght400_GRAD0_opsz48.png"
-        alt="Bootstrap"
-        width="20"
-        height="20"
-      />
-      Vehicle</a
-    >
-    <a class="sidebar-container" [routerLink]="'service-agreement'">
-      <img
-        src="../../assets/Icon/Dashboard/handshake_FILL0_wght400_GRAD0_opsz48.png"
-        alt="Bootstrap"
-        width="20"
-        height="20"
-      />
-      Service-agreement</a
-    >
-    <a class="sidebar-container" [routerLink]="'job'">
-      <img
-        src="../../assets/Icon/Dashboard/work_FILL0_wght400_GRAD0_opsz48.png"
-        alt="Bootstrap"
-        width="20"
-        height="20"
-      />
-      Job</a
-    >
-    <a class="sidebar-container" [routerLink]="'calendar'">
-      <img
-        src="../../assets/Icon/Dashboard/calendar_month_FILL0_wght400_GRAD0_opsz48.png"
-        alt="Bootstrap"
-        width="20"
-        height="20"
-      />
-      Calendar</a
-    >
-    
-    <a class="sidebar-container" [routerLink]="'location'">
-      <img
-        src="../../assets/Icon/Dashboard/pin_drop_FILL0_wght400_GRAD0_opsz48.png"
-        alt="Bootstrap"
-        width="20"
-        height="20"
-      />
-      Location
-    </a>
-    <a class="sidebar-container" [routerLink]="'repair-parts'">
-      <img
-        src="../../assets/Icon/Dashboard/home_repair_service_FILL0_wght400_GRAD0_opsz48.png"
-        alt="Bootstrap"
-        width="20"
-        height="20"
-      />
-      Repair parts
-    </a>
-    <a class="sidebar-container" [routerLink]="'user-group'">
-      <img
-        src="../../assets/Icon/Dashboard//group_add_FILL0_wght400_GRAD0_opsz48.png"
-        alt="Bootstrap"
-        width="20"
-        height="20"
-      />
-      User group
-    </a>
-    <div class="spaceInDashboard"></div>
-    <a class="sidebar-container" [routerLink]="'user'">
-      <img
-        src="../../assets/Icon/Dashboard/settings_FILL0_wght400_GRAD0_opsz48.png"
-        alt="Bootstrap"
-        width="20"
-        height="20"
-      />
-      Settings</a
-    >
-    <a class="sidebar-container" [routerLink]="'settings'">
-      <img
-        src="../../assets/Icon/Dashboard/logout_FILL0_wght400_GRAD0_opsz48.png"
-        alt="Bootstrap"
-        width="20"
-        height="20"
-      />
-      Log Out</a
-    >
+      <a class="sidebar-container" (click)="navigation('location')">
+        <img
+          src="../../assets/Icon/Dashboard/pin_drop_FILL0_wght400_GRAD0_opsz48.png"
+          alt="Bootstrap"
+          width="20"
+          height="20"
+        />
+        Location
+      </a>
+      <a class="sidebar-container" (click)="navigation('repair-parts')">
+        <img
+          src="../../assets/Icon/Dashboard/home_repair_service_FILL0_wght400_GRAD0_opsz48.png"
+          alt="Bootstrap"
+          width="20"
+          height="20"
+        />
+        Repair parts
+      </a>
+      <a class="sidebar-container" (click)="navigation('user-group')">
+        <img
+          src="../../assets/Icon/Dashboard//group_add_FILL0_wght400_GRAD0_opsz48.png"
+          alt="Bootstrap"
+          width="20"
+          height="20"
+        />
+        User group
+      </a>
+      <a class="sidebar-container" (click)="navigation('user')">
+        <img
+          src="../../assets/Icon/Dashboard//group_add_FILL0_wght400_GRAD0_opsz48.png"
+          alt="Bootstrap"
+          width="20"
+          height="20"
+        />
+        User
+      </a>
+      <a class="sidebar-container" (click)="navigation('site-visit')" >
+        <img
+          src="../../assets/Icon/Dashboard//group_add_FILL0_wght400_GRAD0_opsz48.png"
+          alt="Bootstrap"
+          width="20"
+          height="20"
+        />
+        SiteVisit
+      </a>
+      <div class="spaceInDashboard"></div>
+      <!-- <a class="sidebar-container" (click)="navigation('user')" >
+        <img
+          src="../../assets/Icon/Dashboard/settings_FILL0_wght400_GRAD0_opsz48.png"
+          alt="Bootstrap"
+          width="20"
+          height="20"
+        />
+        Settings</a> -->
+      <a class="sidebar-container" (click)="logout()">
+        <img
+          src="../../assets/Icon/Dashboard/logout_FILL0_wght400_GRAD0_opsz48.png"
+          alt="Bootstrap"
+          width="20"
+          height="20"
+        />
+        Logout</a
+      >
+    </div>
   </div>
-</div>
-
-<div class="content">
-  <router-outlet></router-outlet>
 </div>

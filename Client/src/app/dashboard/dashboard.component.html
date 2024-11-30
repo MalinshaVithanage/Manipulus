@@ -1,1 +1,744 @@
-<p>dashboard works!</p>
+<div class="row">
+  <div class="col-sm-2">
+    <app-side-nav></app-side-nav>
+  </div>
+  <div class="col-sm-10 ps-3 mt-2">
+    <div>
+      <div class="min-height-300 bg-primary position-absolute w-100"></div>
+      <div class="container-fluid py-4">
+        <div class="row">
+          <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+            <div class="card">
+              <div class="card-body p-3">
+                <div class="row">
+                  <div class="col-8">
+                    <div class="numbers">
+                      <p class="text-sm mb-0 text-uppercase font-weight-bold">TOTAL Installation JOBS</p>
+                      <h5 class="font-weight-bolder">
+                        {{jobs.length}}
+                      </h5>
+
+                    </div>
+                  </div>
+                  <div class="col-4 text-end">
+                    <div class="icon icon-shape bg-gradient-primary shadow-primary text-center rounded-circle">
+                      <i class="ni ni-money-coins text-lg opacity-10" aria-hidden="true"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+            <div class="card">
+              <div class="card-body p-3">
+                <div class="row">
+                  <div class="col-8">
+
+                    <!-- <div>
+                      <h2>Total Customers: {{ customers.length }}</h2>
+                      <h2>Total Jobs: {{ jobs.length }}</h2>
+                    </div> -->
+
+                    <div>
+                      <p class="text-sm mb-0 text-uppercase font-weight-bold">Job Type Filter:</p>
+                      <select (change)="filterJobs($event)">
+                        <option value="">All</option>
+                        <option *ngFor="let jobtype of jobstypes" [value]="jobtype">{{ jobtype }}</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <p class="text-sm mb-0 text-uppercase font-weight-bold">Job Count: {{ filteredJobs.length }}</p>
+                    </div>
+
+
+
+
+                  </div>
+                  <div class="col-4 text-end">
+                    <div class="icon icon-shape bg-gradient-danger shadow-danger text-center rounded-circle">
+                      <i class="ni ni-world text-lg opacity-10" aria-hidden="true"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+            <div class="card">
+              <div class="card-body p-3">
+                <button
+                type="button"
+                class="btn btn-primary p-2 m-2 justify-content-end"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal"
+              >
+                <img
+                  src="../../assets/Icon/Customer/person_add_FILL0_wght400_GRAD0_opsz48.png"
+                  alt="Bootstrap"
+                  width="20"
+                  height="20"
+                />
+                Add Customer
+              </button>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-sm-6">
+            <div class="card">
+              <div class="card-body p-3">
+                <div class="row">
+                  <button
+        type="button"
+        class="btn btn-outline-primary p-2 m-2 justify-content-end"
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModal1"
+      >
+        <img
+          src="../../assets/Icon/Customer/person_add_FILL0_wght400_GRAD0_opsz48.png"
+          alt="Bootstrap"
+          width="20"
+          height="20"
+        />
+        Add Job
+      </button>
+                  <div class="col-4 text-end">
+                    <div class="icon icon-shape bg-gradient-warning shadow-warning text-center rounded-circle">
+                      <i class="ni ni-cart text-lg opacity-10" aria-hidden="true"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-4">
+          <div class="col-lg-7 mb-lg-0 mb-4">
+            <div class="card z-index-2 h-100">
+              <div class="card-header pb-0 pt-3 bg-transparent">
+                <h6 class="text-capitalize">Sales overview</h6>
+                <p class="text-sm mb-0">
+                  <i class="fa fa-arrow-up text-success"></i>
+                  <span class="font-weight-bold">4% more</span> in 2021
+                </p>
+              </div>
+              <div class="card-body p-3">
+                <div class="chart">
+                  <canvas id="chart-line" class="chart-canvas" height="300"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-5">
+            <div class="card card-carousel overflow-hidden h-100 p-0">
+              <div id="carouselExampleCaptions" class="carousel slide h-100" data-bs-ride="carousel">
+                <div class="carousel-inner border-radius-lg h-100">
+
+                  <div class="carousel-item h-100 active" style="background-image: url('.../../../../assets/img/carousel-1.jpg');
+        background-size: cover;">
+                    <div class="carousel-caption d-none d-md-block bottom-0 text-start start-0 ms-5">
+                      <div class="icon icon-shape icon-sm bg-white text-center border-radius-md mb-3">
+                        <i class="ni ni-camera-compact text-dark opacity-10"></i>
+                      </div>
+                      <h5 class="text-white mb-1">Get started with Argon</h5>
+                      <p>There’s nothing I really wanted to do in life that I wasn’t able to get good at.</p>
+                    </div>
+                  </div>
+                  <div class="carousel-item h-100" style="background-image: url('.../../../../assets/img/carousel-2.jpg');
+        background-size: cover;">
+                    <div class="carousel-caption d-none d-md-block bottom-0 text-start start-0 ms-5">
+                      <div class="icon icon-shape icon-sm bg-white text-center border-radius-md mb-3">
+                        <i class="ni ni-bulb-61 text-dark opacity-10"></i>
+                      </div>
+                      <h5 class="text-white mb-1">Faster way to create web pages</h5>
+                      <p>That’s my skill. I’m not really specifically talented at anything except for the ability to learn.</p>
+                    </div>
+                  </div>
+                  <div class="carousel-item h-100" style="background-image: url('.../../../../assets/img/carousel-3.jpg');
+        background-size: cover;">
+                    <div class="carousel-caption d-none d-md-block bottom-0 text-start start-0 ms-5">
+                      <div class="icon icon-shape icon-sm bg-white text-center border-radius-md mb-3">
+                        <i class="ni ni-trophy text-dark opacity-10"></i>
+                      </div>
+                      <h5 class="text-white mb-1">Share with us your design tips!</h5>
+                      <p>Don’t be afraid to be wrong because you can’t learn anything from a compliment.</p>
+                    </div>
+                  </div>
+                </div>
+                <button class="carousel-control-prev w-5 me-3" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next w-5 me-3" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-4">
+          <div class="col-lg-7 mb-lg-0 mb-4">
+            <div class="card ">
+              <div class="card-header pb-0 p-3">
+                <div class="d-flex justify-content-between">
+                  <h6 class="mb-2">Sales by Country</h6>
+                </div>
+              </div>
+
+
+
+
+
+              <div class="table-responsive">
+                <table class="table align-items-center ">
+                  <tbody>
+                    <tr *ngFor="let customer of customers">
+                      <td class="w-30">
+                        <div class="d-flex px-2 py-1 align-items-center">
+                          <div class="ms-4">
+                            <p class="text-xs font-weight-bold mb-0">Name:</p>
+                            <h6 class="text-sm mb-0">{{customer.name}}</h6>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="text-center">
+                          <p class="text-xs font-weight-bold mb-0">Email:</p>
+                          <h6 class="text-sm mb-0">{{customer.email}}</h6>
+                        </div>
+                      </td>
+
+                      <td class="align-middle text-sm">
+                        <div class="col text-center">
+                          <p class="text-xs font-weight-bold mb-0">Contact Number:</p>
+                          <h6 class="text-sm mb-0">{{customer.contactNumber}}</h6>
+                        </div>
+                      </td>
+                    </tr>
+
+
+               </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="col-lg-5">
+            <div class="card">
+              <div class="card-header pb-0 p-3">
+                <h6 class="mb-0">Categories</h6>
+              </div>
+              <div class="card-body p-3">
+                <table class="table align-items-center ">
+                  <tbody>
+                    <tr *ngFor="let job of jobs">
+                      <td class="w-30">
+                        <div class="d-flex px-2 py-1 align-items-center">
+                          <div class="ms-4">
+                            <p class="text-xs font-weight-bold mb-0">Name:</p>
+                            <h6 class="text-sm mb-0">{{job.id}}</h6>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="text-center">
+                          <p class="text-xs font-weight-bold mb-0">Email:</p>
+                          <h6 class="text-sm mb-0">{{job.job_type}}</h6>
+                        </div>
+                      </td>
+
+                      <td class="align-middle text-sm">
+                        <div class="col text-center">
+                          <p class="text-xs font-weight-bold mb-0">Contact Number:</p>
+                          <h6 class="text-sm mb-0">{{job.job_status}}</h6>
+                        </div>
+                      </td>
+                    </tr>
+
+
+               </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+    </div>
+
+
+
+    <form #addForm="ngForm" (ngSubmit)="onAddCustomer(addForm)">
+      <div
+        class="modal fade"
+        id="exampleModal"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+        data-bs-backdrop="static"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Customer Details</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div class="card mb-4">
+                <div class="card-body">
+                  <!-- <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                    <label class="form-check-label" for="flexSwitchCheckDefault">Default switch checkbox input</label>
+                  </div> -->
+                  <div>
+                    <h3 class="h6 mb-4">Basic information</h3>
+                  </div>
+
+                  <!-- get customer information -->
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="mb-3">
+                        <label class="form-label">Customer Name :</label>
+                        <!-- customer_name input -->
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="name"
+                          ngModel
+                          name="name"
+                          required
+                          minlength="2"
+                          maxlength="50"
+                        />
+
+                        <!-- validation errors -->
+                        <div
+                          *ngIf="
+                            addForm.controls['name'].invalid &&
+                            (addForm.controls['name'].dirty ||
+                              addForm.controls['name'].touched)
+                          "
+                        >
+                          <small
+                            class="text-danger"
+                            *ngIf="addForm.controls['name'].errors?.['required']"
+                            >Customer name is required.</small
+                          >
+                          <small
+                            class="text-danger"
+                            *ngIf="addForm.controls['name'].errors?.['minlength']"
+                            >Customer name must be at least 2 characters
+                            long.</small
+                          >
+                          <small
+                            class="text-danger"
+                            *ngIf="addForm.controls['name'].errors?.['maxlength']"
+                            >Customer name cannot be longer than 50
+                            characters.</small
+                          >
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                      <div class="mb-3">
+                        <label class="form-label">Contact Person Name :</label>
+                        <!-- contact person name input -->
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="contactPersonName"
+                          ngModel
+                          name="contactPersonName"
+                          required
+                          minlength="2"
+                          maxlength="50"
+                        />
+
+                        <!-- contact person name validation -->
+                        <div
+                          *ngIf="
+                            addForm.controls['contactPersonName'].invalid &&
+                            (addForm.controls['contactPersonName'].dirty ||
+                              addForm.controls['contactPersonName'].touched)
+                          "
+                        >
+                          <small
+                            class="text-danger"
+                            *ngIf="addForm.controls['contactPersonName'].errors?.['required']"
+                            >Customer Contact PersonName is required.</small
+                          >
+                          <small
+                            class="text-danger"
+                            *ngIf="addForm.controls['contactPersonName'].errors?.['minlength']"
+                            >Customer Contact PersonName must be at least 2
+                            characters long.</small
+                          >
+                          <small
+                            class="text-danger"
+                            *ngIf="addForm.controls['contactPersonName'].errors?.['maxlength']"
+                            >Customer Contact PersonName cannot be longer than 50
+                            characters.</small
+                          >
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                      <div class="mb-3">
+                        <!-- id number input -->
+                        <label class="form-label">Identity Number :</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="nic_number"
+                          ngModel
+                          name="nic_number"
+                          required
+                          minlength="10"
+                          maxlength="12"
+                          pattern="[0-9]*"
+                        />
+
+                        <!-- id number validation -->
+                        <div
+                          *ngIf="
+                            addForm.controls['nic_number'].invalid &&
+                            (addForm.controls['nic_number'].dirty ||
+                              addForm.controls['nic_number'].touched)
+                          "
+                          class="text-danger"
+                        >
+                          <small
+                            *ngIf="addForm.controls['nic_number'].errors?.['pattern']"
+                            >Identity Number must be a number.</small
+                          >
+                          <small
+                            *ngIf="addForm.controls['nic_number'].errors?.['required']"
+                            >Identity Number is required.</small
+                          >
+                          <small
+                            *ngIf="addForm.controls['nic_number'].errors?.['minlength']"
+                            >Identity Number must be at least 10 digits long.</small
+                          >
+                          <small
+                            *ngIf="addForm.controls['nic_number'].errors?.['maxlength']"
+                            >Identity Number cannot be longer than 12 digits.</small
+                          >
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="mb-3">
+                        <label class="form-label">Mobile Number:</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="contactNumber"
+                          name="contactNumber"
+                          ngModel
+                          required
+                          pattern="^[0-9]{10}$"
+                        />
+                        <div
+                          *ngIf="
+                            addForm.controls['contactNumber'].invalid &&
+                            (addForm.controls['contactNumber'].dirty ||
+                              addForm.controls['contactNumber'].touched)
+                          "
+                        >
+                          <small
+                            class="text-danger"
+                            *ngIf="addForm.controls['contactNumber'].errors?.['required']"
+                          >
+                            Mobile number is required.
+                          </small>
+                          <small
+                            class="text-danger"
+                            *ngIf="addForm.controls['contactNumber'].errors?.['pattern']"
+                          >
+                            Mobile number must be a 10-digit number.
+                          </small>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="mb-3">
+                        <label class="form-label">Address :</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="address"
+                          ngModel
+                          name="address"
+                          required
+                          minlength="10"
+                          maxlength="50"
+                        />
+                        <div
+                          *ngIf="
+                            addForm.controls['address'].invalid &&
+                            (addForm.controls['address'].dirty ||
+                              addForm.controls['address'].touched)
+                          "
+                        >
+                          <small
+                            class="text-danger"
+                            *ngIf="addForm.controls['address'].errors?.['required']"
+                            >Customer Address is required.</small
+                          >
+                          <small
+                            class="text-danger"
+                            *ngIf="addForm.controls['address'].errors?.['minlength']"
+                            >Customer Address must be at least 10 characters
+                            long.</small
+                          >
+                          <small
+                            class="text-danger"
+                            *ngIf="addForm.controls['address'].errors?.['maxlength']"
+                            >Customer Address cannot be longer than 50
+                            characters.</small
+                          >
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="mb-3">
+                        <label class="form-label"> E- mail :</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="email"
+                          ngModel
+                          name="email"
+                          required
+                          email
+                        />
+                        <div
+                          *ngIf="
+                            addForm.controls['email'].invalid &&
+                            (addForm.controls['email'].dirty ||
+                              addForm.controls['email'].touched)
+                          "
+                        >
+                          <small
+                            class="text-danger"
+                            *ngIf="addForm.controls['email'].errors?.['required']"
+                          >
+                            E-mail is required.
+                          </small>
+                          <small
+                            class="text-danger"
+                            *ngIf="addForm.controls['email'].errors?.['email']"
+                          >
+                            Invalid e-mail format.
+                          </small>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="mb-3">
+                        <label class="form-label">Designation :</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="designation"
+                          ngModel
+                          name="designation"
+                          required
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- close button -->
+            <div class="modal-footer">
+              <button
+                type="button"
+                id="add-customer-form"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+
+              <!-- submit button -->
+              <button
+                [disabled]="addForm.invalid"
+                type="submit"
+                class="btn btn-primary"
+                data-bs-dismiss="modal"
+              >
+                Save changes
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+
+
+
+<!--
+<form #addForm="ngForm" (ngSubmit)="onAddJob(addForm)">
+  <div
+    class="modal fade"
+    id="exampleModal1"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel1"
+    aria-hidden="true"
+    data-bs-backdrop="static"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel1">Job Details</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <div class="card mb-4">
+            <div class="card-body">
+              <div>
+                <h3 class="h6 mb-4">Basic information</h3>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="mb-3">
+                    <label class="form-label">Job type:</label>
+                    <select
+                      class="form-control"
+                      id="job_type"
+                      ngModel
+                      name="job_type"
+                      required
+                    >
+                      <option value="Inspection" >Inspection</option>
+                      <option value="Service">Service</option>
+                      <option value="Installation">Installation</option>
+                      <option value="Breakdowns">Breakdowns</option>
+                      <option value="Upgrades">Upgrades</option>
+                      <option value="Remove">Remove</option>
+
+                    </select>
+                    <div
+                      *ngIf="
+                        addForm.controls['job_type'].invalid &&
+                        (addForm.controls['job_type'].dirty ||
+                          addForm.controls['job_type'].touched)
+                      "
+                    >
+                      <small
+                        class="text-danger"
+                        *ngIf="addForm.controls['job_type'].errors?.['required']"
+                        >Job type is required.</small
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-lg-6">
+                  <div class="mb-3">
+                    <label class="form-label">Job due date :</label>
+                    <input
+                      type="date"
+                      class="form-control"
+                      id="job_date"
+                      ngModel
+                      name="job_date"
+                      required
+                    />
+                    <div
+                      *ngIf="
+                        addForm.controls['job_date'].invalid &&
+                        (addForm.controls['job_date'].dirty ||
+                          addForm.controls['job_date'].touched)
+                      "
+                    >
+                      <small
+                        class="text-danger"
+                        *ngIf="addForm.controls['job_date'].errors?.['required']"
+                        >Job due date is required.</small
+                      >
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="mb-3">
+                    <label class="form-label">Customer Name:</label>
+                    <select
+                      class="form-control"
+                      id="customer_id"
+                      [(ngModel)]="customerId"
+                      name="customer_id"
+                      required
+                    >
+                      <option
+                        *ngFor="let customer of customersList"
+                        [value]="customer.id"
+                      >
+                        {{ customer.name }}
+                      </option>
+                    </select>
+
+                    <div
+                      *ngIf="
+                        addForm.controls['customer_id'].invalid &&
+                        (addForm.controls['customer_id'].dirty ||
+                          addForm.controls['customer_id'].touched)
+                      "
+                    >
+                      <small
+                        class="text-danger"
+                        *ngIf="addForm.controls['customer_id'].errors?.['required']"
+                        >Customer ID is required.</small
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            id="add-job-form"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Close
+          </button>
+          <button
+            [disabled]="addForm.invalid"
+            type="submit"
+            class="btn btn-primary"
+          >
+            Save changes
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form> -->

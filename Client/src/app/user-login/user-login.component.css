@@ -1,0 +1,61 @@
+
+.outer-div{
+  width: 100vw;
+  height: 100vh;
+  background: #0F172A;
+}
+
+.login-img{
+  position: absolute;
+left: 17vw;
+top: 10vh;
+}
+
+.login-img-png{
+  width: 30vw;
+  height: 75vh;
+  border-radius: 6%;
+}
+
+
+.main-container{
+  position: absolute;
+  margin-top: 50vh;
+  width: 29vw;
+  margin-left: 55vw;
+  background: #0F172A;
+}
+
+
+#username {
+  border-radius: 54px;
+  padding: 11px;
+  
+}
+#password {    border-radius: 54px;
+  padding: 11px;}
+
+
+  .welcome{
+    position: absolute;
+    left: 64vw;
+    top: 38vh;
+
+  }
+
+  .welcome-msg{
+    color: aliceblue;
+    font-size: 2em;
+  }
+
+  .company-img{
+    left: 61vw;
+    position: absolute;
+  }
+  .company-img-png{
+    width: 17vw;
+ 
+  }
+  .password{
+    margin-left: 21vw;;
+  }

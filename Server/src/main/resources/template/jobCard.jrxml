@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.5.final using JasperReports Library version 6.20.5-3efcf2e67f959db3888d79f73dde2dbd7acb4f8e  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="GatePass" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="72b252bd-dc5e-41dd-8706-54d2e8be62a0">
+    <property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+    <parameter name="assignedJob" class="java.lang.Long"/>
+ <parameter name="sitVisitId" class="java.lang.Long"/>
+    <parameter name="customerName" class="java.lang.String"/>
+    <parameter name="customerAddress" class="java.lang.String"/>
+    <parameter name="customerEmail" class="java.lang.String"/>
+    <parameter name="customerContactNumber" class="java.lang.String"/>
+
+    <parameter name="customerDesignation" class="java.lang.String"/>
+    <parameter name="contactPersonName" class="java.lang.String"/>
+
+
+    <queryString>
+        <![CDATA[]]>
+    </queryString>
+    <background>
+        <band splitType="Stretch"/>
+    </background>
+    <title>
+        <band height="91" splitType="Stretch">
+            <property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
+            <image>
+                <reportElement x="250" y="0" width="70" height="80" uuid="97f98364-0b92-4e78-a042-bf10ba1eca56"/>
+                <imageExpression><![CDATA["C:/Users/HP/Pictures/303292717_570886498156142_5541375326204770233_n.jpg"]]></imageExpression>
+            </image>
+        </band>
+    </title>
+    <pageHeader>
+        <band height="50" splitType="Stretch">
+            <staticText>
+                <reportElement x="105" y="0" width="360" height="50" forecolor="#060608" uuid="5d80d245-9502-4ab1-99e7-fa210c636fc1"/>
+                <textElement textAlignment="Center">
+                    <font size="29" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Job Card - Arctic(Pvt)Ltd]]></text>
+            </staticText>
+        </band>
+    </pageHeader>
+    <columnHeader>
+        <band height="50" splitType="Stretch">
+            <staticText>
+                <reportElement x="20" y="10" width="530" height="24" uuid="497dddd5-bd18-4cc3-89e8-7b7d11a05c8c"/>
+                <box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+                    <pen lineWidth="1.0" lineColor="#000000"/>
+                    <topPen lineWidth="0.25"/>
+                    <leftPen lineWidth="0.25"/>
+                    <bottomPen lineWidth="0.25"/>
+                    <rightPen lineWidth="0.25"/>
+                </box>
+                <textElement textAlignment="Left" verticalAlignment="Middle">
+                    <font size="12"/>
+                </textElement>
+                <text><![CDATA[Job Card Generated On:]]></text>
+            </staticText>
+            <textField pattern="MMMMM dd, yyyy">
+                <reportElement x="170" y="10" width="100" height="24" uuid="5d8145d3-d38f-442d-b32c-07307663b7e6"/>
+                <box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+                    <pen lineColor="#000000"/>
+                    <topPen lineWidth="0.0"/>
+                    <leftPen lineWidth="0.0"/>
+                    <bottomPen lineWidth="0.0"/>
+                    <rightPen lineWidth="0.0"/>
+                </box>
+                <textElement verticalAlignment="Middle">
+                    <font size="12"/>
+                </textElement>
+                <textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement x="390" y="10" width="160" height="24" uuid="234ba6c0-c603-4ffa-a926-21775cf1f001"/>
+                <box>
+                    <pen lineWidth="0.0" lineStyle="Solid"/>
+                </box>
+                <textElement verticalAlignment="Middle">
+                    <font size="12"/>
+                </textElement>
+                <text><![CDATA[Page No : ]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="410" y="10" width="100" height="24" uuid="f82c0b7a-dc45-435f-ba03-450a8187187d"/>
+                <textElement textAlignment="Right" verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA["Page " + $V{PAGE_NUMBER}]]></textFieldExpression>
+            </textField>
+            <textField evaluationTime="Report">
+                <reportElement x="581" y="10" width="100" height="30" uuid="112da3db-fbfc-40e0-ab38-c9bb36f51d44"/>
+                <textElement textAlignment="Left"/>
+                <textFieldExpression><![CDATA[" of " + $V{PAGE_NUMBER}]]></textFieldExpression>
+            </textField>
+        </band>
+    </columnHeader>
+    <detail>
+        <band height="300" splitType="Stretch">
+            <textField>
+                <reportElement x="20" y="7" width="360" height="30" uuid="bcb9992a-8eb3-4dfd-bdb6-90c66a9ade26"/>
+                <textElement textAlignment="Justified"/>
+                <textFieldExpression><![CDATA["Site Visit ID    :    "+$P{sitVisitId}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="20" y="47" width="360" height="30" uuid="670543f7-18e5-408c-a8f7-00bcb4f9eeca"/>
+                <textElement textAlignment="Justified"/>
+                <textFieldExpression><![CDATA["Job ID : "+$P{assignedJob}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="20" y="87" width="360" height="30" uuid="670543f7-18e5-408c-a8f7-00bcb4f9eeca"/>
+                <textElement textAlignment="Justified"/>
+                <textFieldExpression><![CDATA["Customer Name : "+$P{customerName}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="20" y="127" width="360" height="30" uuid="670543f7-18e5-408c-a8f7-00bcb4f9eeca"/>
+                <textElement textAlignment="Justified"/>
+                <textFieldExpression><![CDATA["Contact Person Name : "+$P{contactPersonName}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="20" y="167" width="360" height="30" uuid="670543f7-18e5-408c-a8f7-00bcb4f9eeca"/>
+                <textElement textAlignment="Justified"/>
+                <textFieldExpression><![CDATA["Contact Person Designation : "+$P{customerDesignation}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="20" y="207" width="360" height="30" uuid="670543f7-18e5-408c-a8f7-00bcb4f9eeca"/>
+                <textElement textAlignment="Justified"/>
+                <textFieldExpression><![CDATA["Contact Person Address : "+$P{customerAddress}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="20" y="247" width="360" height="30" uuid="670543f7-18e5-408c-a8f7-00bcb4f9eeca"/>
+                <textElement textAlignment="Justified"/>
+                <textFieldExpression><![CDATA["Contact Person Email : "+$P{customerEmail}]]></textFieldExpression>
+            </textField>
+
+
+        </band>
+    </detail>
+    <columnFooter>
+        <band height="45" splitType="Stretch"/>
+    </columnFooter>
+    <pageFooter>
+        <band height="54" splitType="Stretch"/>
+    </pageFooter>
+    <summary>
+        <band height="42" splitType="Stretch"/>
+    </summary>
+</jasperReport>

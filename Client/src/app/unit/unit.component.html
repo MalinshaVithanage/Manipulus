@@ -1,1 +1,354 @@
-<p>unit works!</p>
+<div class="row">
+  <div class="col-sm-2">
+    <app-side-nav></app-side-nav>
+  </div>
+  <div class="col-sm-10 ps-3 mt-2">
+    <div class="tabel-containt" id="main-container">
+      <header class="py-3 border-bottom">
+        <div class="container d-flex flex-wrap justify-content-center">
+          <a class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto text-dark text-decoration-none">
+            <span class="fs-8 me-1">Units</span>
+            <span class="badge rounded-pill bg-info unitCount text-muted">
+              {{ units.length }}</span>
+          </a>
+          <!-- <form class="col-12 col-lg-auto mb-3 mb-lg-0">
+          <input type="search" (ngModelChange)="searchUnit(key.value)" #key="ngModel" ngModel name="key"
+            class="form-control" placeholder="Search..." aria-label="Search" required />
+        </form> -->
+
+          <button type="button" class="btn btn-primary p-2 m-2 justify-content-end" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <img src="../../assets/Icon/Customer/person_add_FILL0_wght400_GRAD0_opsz48.png" alt="Bootstrap" width="20"
+              height="20" />
+            Add Unit
+          </button>
+        </div>
+      </header>
+
+      <!-- unit data table -->
+      <div>
+        <table datatable [dtTrigger]="dtTriger" [dtOptions]="dtoptions" class="table align-middle mb-0 bg-white">
+          <!-- table header -->
+          <thead class="bg-light m-2">
+            <tr>
+              <th>Id</th>
+              <th>Item Name</th>
+              <th>Commisioned Date</th>
+              <th>Status</th>
+              <th>Installed Location</th>
+              <th>Parent Location</th>
+              <th>Outdoor Serial</th>
+              <th>Indoor Serial</th>
+              <th>Warranty</th>
+              <th>Unit price</th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+
+          <!-- table body with a for loop for each of the customers in backends -->
+          <tbody>
+            <tr *ngFor="let unit of units">
+              <td>
+                <div class="d-flex align-items-center">
+                  <div class="ms-3">
+                    <p class="fw-bold mb-1">{{ unit.id }}</p>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="d-flex align-items-center">
+                  <div class="ms-3">
+                    <p class="fw-bold mb-1">{{ unit.item_name }}</p>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="d-flex align-items-center">
+                  <div class="ms-3">
+                    <p class="fw-bold mb-1">{{ unit.commissioned_date }}</p>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="d-flex align-items-center">
+                  <div class="ms-3">
+                    <p class="fw-bold mb-1">{{ unit.status }}</p>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="d-flex align-items-center">
+                  <div class="ms-3">
+                    <p class="fw-bold mb-1">
+                      {{ unit.installed_location_name }}
+                    </p>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="d-flex align-items-center">
+                  <div class="ms-3">
+                    <p class="fw-bold mb-1">
+                      {{ unit.installed_parent_location }}
+                    </p>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="d-flex align-items-center">
+                  <div class="ms-3">
+                    <p class="fw-bold mb-1">{{ unit.outdoor_serial }}</p>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="d-flex align-items-center">
+                  <div class="ms-3">
+                    <p class="fw-bold mb-1">{{ unit.indoor_serial }}</p>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="d-flex align-items-center">
+                  <div class="ms-3">
+                    <p class="fw-bold mb-1">{{ unit.warranty_period }}</p>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="d-flex align-items-center">
+                  <div class="ms-3">
+                    <p class="fw-bold mb-1">{{ unit.unit_price }}</p>
+                  </div>
+                </div>
+              </td>
+
+              <!-- delete unit button -->
+              <td>
+                <button type="button" class="btn btn-link btn-sm btn-rounded" (click)="onOpenModal(unit, 'delete')">
+                  <img src="../../assets/Icon/Customer/delete_FILL0_wght400_GRAD0_opsz48.png" alt="Bootstrap" width="20"
+                    height="20" />
+                </button>
+              </td>
+
+              <!-- edit unit button -->
+              <td>
+                <button type="button" class="btn btn-outline-primary" (click)="onOpenModal(unit, 'edit')">
+                  <img src="../../assets/Icon/Customer/edit_FILL0_wght400_GRAD0_opsz48.png" alt="Bootstrap" width="20"
+                    height="20" />
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+      <form [formGroup]="addUnitForm" (ngSubmit)="onUnitAdd()" class="unit-form">
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+          data-bs-backdrop="static">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Unit Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <div class="card mb-4">
+                  <div class="card-body">
+                    <div>
+                      <h3 class="h6 mb-4">Basic Information</h3>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="mb-3">
+                          <label class="form-label">Unit Name:</label>
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="mb-3">
+                          <input type="text" formControlName="unit_name" class="form-control" />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="mb-3">
+                          <label class="form-label">Item Name:</label>
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="mb-3">
+                          <input type="text" formControlName="item_name" class="form-control" />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="mb-3">
+                          <label class="form-label">Indoor Serial:</label>
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="mb-3">
+                          <input type="text" formControlName="indoor_serial" class="form-control" />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="mb-3">
+                          <label class="form-label">Outdoor Serial:</label>
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="mb-3">
+                          <input type="text" formControlName="outdoor_serial" class="form-control" />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="mb-3">
+                          <label class="form-label">Commissioned date:</label>
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="mb-3">
+                          <input type="text" formControlName="commissioned_date" class="form-control" />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="mb-3">
+                          <label class="form-label">Owner:</label>
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="mb-3">
+                          <input type="text" formControlName="owner" class="form-control" />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="mb-3">
+                          <label class="form-label">Installed Location Name:</label>
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="mb-3">
+                          <input type="text" formControlName="installed_location_name" class="form-control" />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="mb-3">
+                          <label class="form-label">Installed Location Address:</label>
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="mb-3">
+                          <input type="text" formControlName="installed_location_address" class="form-control" />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="mb-3">
+                          <label class="form-label">Installed Parent Location:</label>
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="mb-3">
+                          <input type="text" formControlName="installed_parent_location" class="form-control" />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="mb-3">
+                          <label class="form-label">Warranty Period:</label>
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="mb-3">
+                          <input type="text" formControlName="warranty_period" class="form-control" />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="mb-3">
+                          <label class="form-label">Unit Price:</label>
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="mb-3">
+                          <input type="text" formControlName="unit_price" class="form-control" />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="mb-3">
+                          <label class="form-label">Status:</label>
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="mb-3">
+                          <input type="text" formControlName="status" class="form-control" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                  Close
+                </button>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+
+    <div class="modal delete" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModal3" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabedelete">Detele Unit</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            Are you want to delete unit?
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+              No
+            </button>
+            <button (click)="onDeleteCustomer()" class="btn btn-danger" data-bs-dismiss="modal">
+              Yes
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

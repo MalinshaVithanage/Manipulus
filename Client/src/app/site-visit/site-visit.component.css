@@ -1,0 +1,91 @@
+body{
+    background:#eee;    
+    margin-top:20px;
+    
+    }
+    
+    .card-box {
+        border: none;
+        margin-bottom: 24px;
+        -webkit-box-shadow: 0 0 13px 0 rgba(212, 102, 17, 0.44);
+        box-shadow: 0 0 13px 0 rgba(42, 42, 94, 0.44);
+        position: relative;
+        color: #1f213a;
+        padding: 20px 10px 40px;
+        /* margin: 20px 0px; */
+    }
+    .card-box:hover {
+        text-decoration: none;
+        color: #302727;
+    }
+    .card-box:hover .icon i {
+        font-size: 100px;
+        transition: 1s;
+        -webkit-transition: 1s;
+    }
+    .card-box .inner {
+        padding: 5px 10px 10 10px;
+    }
+    .card-box h3 {
+        font-size: 50px;
+        font-weight: bold;
+        margin: 0 0 8px 0;
+        white-space: nowrap;
+        padding: 0;
+        text-align: left;
+    }
+    .card-box p {
+        font-size: 15px;
+    }
+    .card-box .icon {
+        position: absolute;
+        top: auto;
+        bottom: 5px;
+        right: 5px;
+        z-index: 0;
+        font-size: 72px;
+        color: rgba(0, 0, 0, 0.15);
+    }
+    .card-box .card-box-footer {
+        position: absolute;
+        left: 0px;
+        bottom: 0px;
+        text-align: center;
+        padding: 3px 0;
+        color: rgba(16, 24, 59, 0.8);
+        background: rgba(0, 0, 0, 0.1);
+        width: 100%;
+        text-decoration:wavy;
+    }
+    .card-box:hover .card-box-footer {
+        background: rgba(0, 0, 0, 0.3);
+    }
+    
+    .bg-pattern {
+        background-color: #f7fcfd !important;
+    }
+    .vehicle-dropdown {
+        max-height: 200px;
+        overflow-y: auto;
+    }
+    .vehicle-dropdown-container {
+        width: 100%;
+        overflow-x: auto;
+    
+        max-height: 150px;
+        overflow-y: auto;
+    }
+    .vehicle-dropdown-container:focus-within {
+        max-height: none;
+    }
+    .active-status-textarea {
+        resize: vertical;
+    }
+    .active-status-container {
+        max-height: 200px;
+        overflow-y: auto;
+    }
+    
+    .active-status-row {
+        margin-bottom: 10px;
+    }

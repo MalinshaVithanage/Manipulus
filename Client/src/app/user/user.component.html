@@ -1,1 +1,258 @@
-<p>user works!</p>
+<div class="row">
+  <div class="col-sm-2">
+    <app-side-nav></app-side-nav>
+  </div>
+  <div class="col-sm-10 ps-3 mt-2">
+    <header class="py-3 border-bottom">
+      <div class="container d-flex flex-wrap justify-content-center">
+        <a
+          class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto text-dark text-decoration-none"
+        >
+          <span class="fs-8">User</span>
+          <span class="badge rounded-pill bg-info userCount text-muted"
+            >100</span
+          >
+        </a>
+        <form class="col-12 col-lg-auto mb-3 mb-lg-0">
+          <input
+            type="search"
+            [(ngModel)]="key"
+            name="key"
+            class="form-control"
+            placeholder="Search..."
+            aria-label="Search"
+            required
+          />
+        </form>
+        <button
+          type="button"
+          class="btn btn-outline-primary"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+        >
+          <img
+            src="../../assets/Icon/Customer/person_add_FILL0_wght400_GRAD0_opsz48.png"
+            alt="Bootstrap"
+            width="20"
+            height="20"
+          />
+          Add User
+        </button>
+      </div>
+    </header>
+
+    <form [formGroup]="addUserForm" (ngSubmit)="onUserAdd()" class="user-form">
+      <div
+        class="modal fade"
+        id="exampleModal"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+        data-bs-backdrop="static"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">User Details</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div class="card mb-4">
+                <div class="card-body">
+                  <div>
+                    <h3 class="h6 mb-4">Basic Information</h3>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="mb-3">
+                        <label class="form-label">First Name:</label>
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="mb-3">
+                        <input
+                          type="text"
+                          formControlName="firstName"
+                          class="form-control"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="mb-3">
+                        <label class="form-label">Last Name:</label>
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="mb-3">
+                        <input
+                          type="text"
+                          formControlName="lastName"
+                          class="form-control"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="mb-3">
+                        <label class="form-label">Personal Address:</label>
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="mb-3">
+                        <input
+                          type="text"
+                          formControlName="address"
+                          class="form-control"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="mb-3">
+                        <label class="form-label">Mobile Number:</label>
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="mb-3">
+                        <input
+                          type="text"
+                          formControlName="mobileNumber"
+                          class="form-control"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="mb-3">
+                        <label class="form-label">Email Address:</label>
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="mb-3">
+                        <input
+                          type="text"
+                          formControlName="email"
+                          class="form-control"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="mb-3">
+                        <label class="form-label">Password:</label>
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="mb-3">
+                        <input
+                          type="text"
+                          formControlName="password"
+                          class="form-control"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="mb-3">
+                        <label class="form-label">Status:</label>
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="mb-3">
+                        <input
+                          type="text"
+                          formControlName="status"
+                          class="form-control"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="mb-3">
+                        <label class="form-label">Designation:</label>
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="mb-3">
+                        <input
+                          type="text"
+                          formControlName="designation"
+                          class="form-control"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="mb-3">
+                        <label class="form-label">User Group:</label>
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="mb-3">
+                        <input
+                          type="text"
+                          formControlName="group"
+                          class="form-control"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="mb-3">
+                        <label class="form-label">User Role:</label>
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="mb-3">
+                        <input
+                          type="text"
+                          formControlName="userRole"
+                          class="form-control"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

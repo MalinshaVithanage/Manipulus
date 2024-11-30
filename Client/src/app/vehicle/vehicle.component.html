@@ -1,359 +1,368 @@
-<header class="py-3 border-bottom">
-    <div class="container d-flex flex-wrap justify-content-center">
-      <a
-        class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto text-dark text-decoration-none"
-      >
-        <span class="fs-8">Vehicle</span>
-        <span class="badge rounded-pill bg-info customerCount text-muted"
-          >100</span
-        >
-      </a>
-      <form class="col-12 col-lg-auto mb-3 mb-lg-0">
-        <input
-          type="search"
-          class="form-control"
-          placeholder="Search..."
-          aria-label="Search"
-        />
-      </form>
-      <button
-        type="button"
-        class="btn btn-outline-primary"
-        data-bs-toggle="modal"
-        data-bs-target="#exampleModal2"
-      >
-        <img
-          src="../../assets/Icon/Customer/person_add_FILL0_wght400_GRAD0_opsz48.png"
-          alt="Bootstrap"
-          width="20"
-          height="20"
-        />
-        Add Customer
-      </button>
-    </div>
-  </header>
-  <div class="space_in_vehicle"></div>
-  <div class="vehicle_loop">
-    <div *ngFor="let vehicle of vehicle" class="vehicle_loop_class">
-      <div class="vehicle_details_container" id="vehicle_details_container" >
-      
-            <div class="vehicle_details">
-              <div class="vehicle_image">
-                <img
-                src="../../assets/vehicle/download (1).jpg"
-                alt="Bootstrap"
-                width="100%"
-                height="100%"
-              />
-              </div>
-              <div class="vehicle_details_data">
-                    <p>{{vehicle.vehicle_name}}  - {{vehicle.number_of_passengers}} passengers</p>
-              </div>
-              <div class="vehilve_number">
-                <p> {{vehicle.vehicle_number}}</p>
-              </div>
-              <div class="button">
-                <button
-              type="button"
-              class="btn btn-link btn-sm btn-rounded"
-              (click)="onOpenModal_vehice(vehicle, 'delete')"
-            >
-              <img
-                src="../../assets/Icon/Customer/delete_FILL0_wght400_GRAD0_opsz48.png"
-                alt="Bootstrap"
-                width="20"
-                height="20"
-              />
-            </button>
-  
-            <button
-              type="button"
-              class="btn btn-outline-primary"
-              (click)="onOpenModal_vehice(vehicle, 'edit')"
-            >
-              <img
-                src="../../assets/Icon/Customer/edit_FILL0_wght400_GRAD0_opsz48.png"
-                alt="Bootstrap"
-                width="20"
-                height="20"
-              />
-            </button>
-              </div>
-  
-            </div>
-      </div>
+<div class="row">
+  <div class="col-sm-2">
+    <app-side-nav></app-side-nav>
   </div>
-  </div>
-  
-  
-  
-  <!-- Modal add -->
-  <form #addForm1="ngForm" (ngSubmit)="onAddVehicle(addForm1)">
-    <div
-      class="modal fade"
-      id="exampleModal2"
-      tabindex="-1"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Vehicle Details</h5>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body">
-            <div class="card mb-4">
-              <div class="card-body">
-                <div>
-                  <h3 class="h6 mb-4">Basic information</h3>
-                </div>
-  
-                <div class="row">
-                  <div class="col-lg-6">
-                    <div class="mb-3">
-                      <label class="form-label">Vehicle Name :</label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="vehicle_name"
-                        ngModel
-                        name="vehicle_name"
-                        required
-                      />
-                    </div>
-                  </div>
-  
-                  <div class="col-lg-6">
-                    <div class="mb-3">
-                      <label class="form-label">Vehicle Number :</label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="vehicle_number"
-                        ngModel
-                        name="vehicle_number"
-                        required
-                      />
-                    </div>
-                  </div>
-  
-                  <div class="col-lg-6">
-                    <div class="mb-3">
-                      <label class="form-label">Number Of passengers :</label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="number_of_passengers"
-                        ngModel
-                        name="number_of_passengers"
-                        required
-                      />
-                    </div>
-                  </div>
-                  <div class="col-lg-6">
-                    <div class="mb-3">
-                      <label class="form-label">Image Url :</label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="vehicle_image"
-                        ngModel
-                        name="vehicle_image"
-                        required
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              id="add-vehicle-form"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
-            >
-              Close
-            </button>
-            <button
-              [disabled]="addForm1.invalid"
-              type="submit"
-              class="btn btn-primary"
-            >
-              Save changes
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </form>
-  
-  
-  <form #editForm1="ngForm">
-    <div
-      class="modal fade"
-      id="exampleModal22"
-      tabindex="-1"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">
-              Edit Customer {{ editVehicle?.vehicle_name }}
-            </h5>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body">
-            <div class="card mb-4">
-              <div class="card-body">
-                <div>
-                  <h3 class="h6 mb-4">Basic information</h3>
-                </div>
-  
-                <div class="row">
-                  <div class="col-lg-6">
-                    <div class="mb-3">
-                      <label class="form-label">Vehicle Name :</label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="vehicle_name"
-                        ngModel="{{ editVehicle?.vehicle_name }}"
-                        name="vehicle_name"
-                        required
-                      />
-                    </div>
-                  </div>
-                  <input
-                    type="hidden"
-                    class="form-control"
-                    id="id"
-                    ngModel="{{ editVehicle?.id }}"
-                    name="id"
-                  />
-                  <input
-                    type="hidden"
-                    class="form-control"
-                    id="vehicle_code"
-                    ngModel="{{ editVehicle?.vehicle_code }}"
-                    name="vehicle_code"
-                  />
-  
-                  <div class="col-lg-6">
-                    <div class="mb-3">
-                      <label class="form-label">Vehicle Number :</label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="vehicle_number"
-                        ngModel="{{ editVehicle?.vehicle_number }}"
-                        name="vehicle_number"
-                        required
-                      />
-                    </div>
-                  </div>
-  
-                  <div class="col-lg-6">
-                    <div class="mb-3">
-                      <label class="form-label">Number Of passengers :</label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="number_of_passengers"
-                        ngModel="{{ editVehicle?.number_of_passengers }}"
-                        name="number_of_passengers"
-                        required
-                      />
-                    </div>
-                  </div>
-                  <div class="col-lg-6">
-                    <div class="mb-3">
-                      <label class="form-label">Image Url :</label>
-                      <input
-                        type="email"
-                        class="form-control"
-                        id="vehicle_image"
-                        ngModel="{{ editVehicle?.vehicle_image }}"
-                        name="vehicle_image"
-                        required
-                      />
-                    </div>
-                  </div>
-                </div>
-                
-              </div>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              id="add-customer-form"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
-            >
-              Close
-            </button>
-            <button
-              (click)="onUpdateVehicle(editForm1.value)"
-              class="btn btn-primary"
-              data-bs-dismiss="modal"
-            >
-              Save changes
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </form>
-  
-  
-  
-  <div
-    class="modal delete"
-    id="exampleModal23"
-    tabindex="-1"
-    aria-labelledby="exampleModal31"
-    aria-hidden="true"
-  >
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabedelete">Detele Customer</h5>
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-          ></button>
-        </div>
-        <div class="modal-body">
-          Are you want to delete customer {{ deleteVehicle?.vehicle_name }}?
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-            No
-          </button>
-          <button
-            (click)="onDeleteVehicle(deleteVehicle.id)"
-            class="btn btn-danger"
+  <div class="col-sm-10 ps-3 mt-2">
+    <header class="py-3 border-bottom">
+      <div class="container d-flex flex-wrap justify-content-center">
+          <a class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto text-dark text-decoration-none">
+              <span class="fs-8">Vehicle</span>
+              <span class="badge rounded-pill bg-info customerCount text-muted">100</span
           >
-            Yes
-          </button>
+        </a>
+        <form class="col-12 col-lg-auto mb-3 mb-lg-0">
+          <input
+            type="search"
+            class="form-control"
+            placeholder="Search..."
+            aria-label="Search"
+          />
+        </form>
+        <button
+          type="button"
+          class="btn btn-outline-primary"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal2"
+        >
+          <img
+            src="../../assets/Icon/Customer/person_add_FILL0_wght400_GRAD0_opsz48.png"
+            alt="Bootstrap"
+            width="20"
+            height="20"
+          />
+          Add Vehicle
+        </button>
+      </div>
+    </header>
+    <div class="space_in_vehicle"></div>
+    <div class="vehicle_loop">
+      <div *ngFor="let vehicle of vehicle" class="vehicle_loop_class">
+        <div class="vehicle_details_container" id="vehicle_details_container" >
+  
+              <div class="vehicle_details">
+                <div class="vehicle_image">
+                  <img
+                  src="../../assets/vehicle/download (1).jpg"
+                  alt="Bootstrap"
+                  width="100%"
+                  height="100%"
+                />
+                </div>
+                <div class="vehicle_details_data">
+                      <p>{{vehicle.vehicle_name}}  - {{vehicle.number_of_passengers}} passengers</p>
+                </div>
+                <div class="vehilve_number">
+                  <p> {{vehicle.vehicle_number}}</p>
+                </div>
+                <div class="button">
+                  <button
+                type="button"
+                class="btn btn-link btn-sm btn-rounded"
+                (click)="onOpenModal_vehice(vehicle, 'delete')"
+              >
+                <img
+                  src="../../assets/Icon/Customer/delete_FILL0_wght400_GRAD0_opsz48.png"
+                  alt="Bootstrap"
+                  width="20"
+                  height="20"
+                />
+              </button>
+  
+              <button
+                type="button"
+                class="btn btn-outline-primary"
+                (click)="onOpenModal_vehice(vehicle, 'edit')"
+              >
+                <img
+                  src="../../assets/Icon/Customer/edit_FILL0_wght400_GRAD0_opsz48.png"
+                  alt="Bootstrap"
+                  width="20"
+                  height="20"
+                />
+              </button>
+                </div>
+  
+              </div>
+        </div>
+    </div>
+    </div>
+  
+  
+  
+    <!-- Modal add -->
+    <form #addForm1="ngForm" (ngSubmit)="onAddVehicle(addForm1)">
+      <div
+        class="modal fade"
+        id="exampleModal2"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Vehicle Details</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div class="card mb-4">
+                <div class="card-body">
+                  <div>
+                    <h3 class="h6 mb-4">Basic information</h3>
+                  </div>
+  
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="mb-3">
+                        <label class="form-label">Vehicle Name :</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="vehicle_name"
+                          ngModel
+                          name="vehicle_name"
+                          required
+                        />
+                      </div>
+                    </div>
+  
+                    <div class="col-lg-6">
+                      <div class="mb-3">
+                        <label class="form-label">Vehicle Number :</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="vehicle_number"
+                          ngModel
+                          name="vehicle_number"
+                          required
+                        />
+                      </div>
+                    </div>
+  
+                    <div class="col-lg-6">
+                      <div class="mb-3">
+                        <label class="form-label">Number Of passengers :</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="number_of_passengers"
+                          ngModel
+                          name="number_of_passengers"
+                          required
+                        />
+                      </div>
+                    </div>
+                    <!-- <div class="col-lg-6">
+                      <div class="mb-3">
+                        <label class="form-label">Image Url :</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="vehicle_image"
+                          ngModel
+                          name="vehicle_image"
+                          required
+                        />
+                      </div>
+                    </div> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                id="add-vehicle-form"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button
+                [disabled]="addForm1.invalid"
+                type="submit"
+                class="btn btn-primary"
+              >
+                Save changes
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  
+  
+    <form #editForm1="ngForm">
+      <div
+        class="modal fade"
+        id="exampleModal22"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">
+                Edit Customer {{ editVehicle?.vehicle_name }}
+              </h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div class="card mb-4">
+                <div class="card-body">
+                  <div>
+                    <h3 class="h6 mb-4">Basic information</h3>
+                  </div>
+  
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="mb-3">
+                        <label class="form-label">Vehicle Name :</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="vehicle_name"
+                          ngModel="{{ editVehicle?.vehicle_name }}"
+                          name="vehicle_name"
+                          required
+                        />
+                      </div>
+                    </div>
+                    <input
+                      type="hidden"
+                      class="form-control"
+                      id="id"
+                      ngModel="{{ editVehicle?.id }}"
+                      name="id"
+                    />
+                    <input
+                      type="hidden"
+                      class="form-control"
+                      id="vehicle_code"
+                      ngModel="{{ editVehicle?.vehicle_code }}"
+                      name="vehicle_code"
+                    />
+  
+                    <div class="col-lg-6">
+                      <div class="mb-3">
+                        <label class="form-label">Vehicle Number :</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="vehicle_number"
+                          ngModel="{{ editVehicle?.vehicle_number }}"
+                          name="vehicle_number"
+                          required
+                        />
+                      </div>
+                    </div>
+  
+                    <div class="col-lg-6">
+                      <div class="mb-3">
+                        <label class="form-label">Number Of passengers :</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="number_of_passengers"
+                          ngModel="{{ editVehicle?.number_of_passengers }}"
+                          name="number_of_passengers"
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="mb-3">
+                        <label class="form-label">Image Url :</label>
+                        <input
+                          type="email"
+                          class="form-control"
+                          id="vehicle_image"
+                          ngModel="{{ editVehicle?.vehicle_image }}"
+                          name="vehicle_image"
+                          required
+                        />
+                      </div>
+                    </div>
+                  </div>
+  
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                id="add-customer-form"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button
+                (click)="onUpdateVehicle(editForm1.value)"
+                class="btn btn-primary"
+                data-bs-dismiss="modal"
+              >
+                Save changes
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  
+  
+  
+    <div
+      class="modal delete"
+      id="exampleModal23"
+      tabindex="-1"
+      aria-labelledby="exampleModal31"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabedelete">Detele Customer</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            Are you want to delete customer {{ deleteVehicle?.vehicle_name }}?
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+              No
+            </button>
+            <button
+              (click)="onDeleteVehicle(deleteVehicle.id)"
+              class="btn btn-danger"
+            >
+              Yes
+            </button>
+          </div>
         </div>
       </div>
     </div>
   </div>
+</div> 
+
+
+
+
+

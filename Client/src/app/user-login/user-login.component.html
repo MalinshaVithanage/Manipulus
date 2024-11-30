@@ -1,1 +1,115 @@
-<p>user-login works!</p>
+<!-- <div class="container mt-5  b">
+   <div class="row">
+    <div class="col-sm-3">
+      <div class="container">
+        <img src="../../assets/login/user-login.jpg" class="img-fluid" alt="User-Login">
+      </div>
+    </div>
+    <div class="col-sm-9">
+      <div class="card" style="padding: 20px">
+        <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+          <input type="text" ngModel name="username" id="username" placeholder="Enter your username"
+            class="form-control mb-3" />
+
+          <input type="password" ngModel name="password" id="password" placeholder="Enter your password"
+            class="form-control mb-3" />
+
+          <input type="submit" value="Login" class="btn btn-outline-primary form-control rounded-0" />
+        </form>
+
+        <div class="container text-end mt-4">
+          Forgot your password? <button class="btn btn-outline-secondary rounded-0" (click)="navigateToResetPassword()"> Click here</button>
+        </div>
+      </div>
+    </div>
+      </div>
+    </div> 
+  
+  -->
+<!-- <div class="girl-container">
+  <img
+    src="../../assets/fun-3d-illustration-cartoon-teenage-girl-with-rain-gear-removebg-preview.png"
+    class="gril_image"
+  />
+</div>
+<div class="mid_chip">
+  <img
+    src="../../assets/original-b47fd46878972efc7d4283cef54dc984-removebg-preview.png"
+    class="image_chip"
+  />
+</div> -->
+
+<!-- <div class="welcome">Welcome Back</div> -->
+
+<div class="outer-div">
+  <div class="alert alert-danger " *ngIf="errorMessage">
+    <button type="button btn" class="close" aria-label="Close" (click)="dismissAlert()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    {{ errorMessage }}
+  </div>
+  <div class="welcome">
+    <p class="welcome-msg">Welcome Back </p>
+  </div>
+
+  <div class="login-img"> <img src="../../assets/image 24.png" alt="" class="login-img-png"></div>
+  <div class="company-img"> <img src="../../assets/Perez Letter 3D Logo .png" alt="" class="company-img-png"></div>
+  <div class="container-sm main-container">
+    
+      <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+        <div class="row px-3">
+          <label class="mb-1"><h6 class="mb-0 text-sm text-light">Email Address</h6></label>
+          <input
+            class="mb-4 form-control rounded-boders"
+            type="text"
+            ngModel
+            name="username"
+            id="username"
+            placeholder="Enter your username"
+          />
+        </div>
+        <div class="row px-3">
+          <label class="mb-1"><h6 class="mb-0 text-sm text-light">Password</h6></label>
+          <input
+            class="form-control"
+            type="password"
+            ngModel
+            name="password"
+            id="password"
+            placeholder="Enter your password"
+          />
+        </div>
+        <div class="row mb-3 px-3 py-3">
+          <div class="col-lg-9 ">
+            <div
+              href=""
+              class="mb-0 text-sm cursor-pointer text-light "
+              (click)="navigateToResetPassword()"
+            >
+              Forgot Password?
+            </div>
+          </div>
+          <div class="col-lg-3 password" >
+            <button
+              type="submit"
+              value="Login"
+              class="btn btn-primary text-center form-control text-light"
+            >
+              Login
+            </button>
+            
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+
+  
+<!-- 
+<ng-container *ngIf="errorMessage">
+  <div class="alert-danger">
+    {{ errorMessage }}
+  </div>
+</ng-container> -->
